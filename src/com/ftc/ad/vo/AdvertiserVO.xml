@@ -1,0 +1,111 @@
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="advertiser">
+	<typeAlias alias="advertiserVO" type="com.ftc.ad.vo.AdvertiserVO" />
+
+	<resultMap id="advertiserRS" class="advertiserVO">
+		<result property="advertiserID" column="advertiserID" />
+		<result property="columnType" column="columnType" />
+		<result property="prodName" column="prodName" />
+		<result property="platformType" column="platformType" />
+		<result property="balanceType" column="balanceType" />
+		<result property="viewType" column="viewType" />
+		<result property="qq" column="qq" />
+		<result property="mobilePhone" column="mobilePhone" />
+		<result property="wechat" column="wechat" />
+		<result property="cooperationType" column="cooperationType" />
+		<result property="price" column="price" />
+		<result property="orgName" column="orgName" />
+		<result property="website" column="website" />
+		<result property="telephone" column="telephone" />
+		<result property="comments" column="comments" />
+		<result property="status" column="status" />
+		<result property="verifystatus" column="verifystatus" />
+		<result property="createdate" column="createdate" />
+		<result property="datelastupdated" column="datelastupdated" />
+		<result property="userID" column="userID" />
+	</resultMap>
+	
+	<insert id="doInsertAd" parameterClass="advertiserVO">
+		INSERT INTO b_advertiser<dynamic><isParameterPresent>(userID,status,verifystatus,createdate,datelastupdated
+		  <isPropertyAvailable property="columnType"><isNotNull prepend="," property="columnType">columnType</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="prodName"><isNotNull prepend="," property="prodName">prodName</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="platformType"><isNotNull prepend="," property="platformType">platformType</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="balanceType"><isNotNull prepend="," property="balanceType">balanceType</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="viewType"><isNotNull prepend="," property="viewType">viewType</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="qq"><isNotNull prepend="," property="qq">qq</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="mobilePhone"><isNotNull prepend="," property="mobilePhone">mobilePhone</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="wechat"><isNotNull prepend="," property="wechat">wechat</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="cooperationType"><isNotNull prepend="," property="cooperationType">cooperationType</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="price"><isNotNull prepend="," property="price">price</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="orgName"><isNotNull prepend="," property="orgName">orgName</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="website"><isNotNull prepend="," property="website">website</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">telephone</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">comments</isNotNull></isPropertyAvailable>
+		) VALUES(#userID#,10,10,SYSDATE(),SYSDATE()
+		  <isPropertyAvailable property="columnType"><isNotNull prepend="," property="columnType">#columnType#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="prodName"><isNotNull prepend="," property="prodName">#prodName#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="platformType"><isNotNull prepend="," property="platformType">#platformType#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="balanceType"><isNotNull prepend="," property="balanceType">#balanceType#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="viewType"><isNotNull prepend="," property="viewType">#viewType#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="qq"><isNotNull prepend="," property="qq">#qq#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="mobilePhone"><isNotNull prepend="," property="mobilePhone">#mobilePhone#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="wechat"><isNotNull prepend="," property="wechat">#wechat#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="cooperationType"><isNotNull prepend="," property="cooperationType">#cooperationType#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="price"><isNotNull prepend="," property="price">#price#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="orgName"><isNotNull prepend="," property="orgName">#orgName#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="website"><isNotNull prepend="," property="website">#website#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">#telephone#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">#comments#</isNotNull></isPropertyAvailable>
+		)</isParameterPresent></dynamic> 
+	</insert>
+	
+	<select id="getAdList" resultMap="advertiserRS" parameterClass="advertiserVO">
+		select * from b_advertiser
+		where 1=1
+		<isPropertyAvailable property="userID"><isNotNull property="userID"> and userID = #userID#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="advertiserID"><isNotNull property="advertiserID"> and advertiserID = #advertiserID#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="columnType"><isNotNull property="columnType"> and columnType = #columnType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="prodName"><isNotNull property="prodName"> and prodName = #prodName#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="platformType"><isNotNull property="platformType">and platformType = #platformType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="balanceType"><isNotNull property="balanceType">and balanceType = #balanceType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="viewType"><isNotNull property="viewType">and viewType = #viewType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="qq"><isNotNull property="qq">and qq = #qq#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="mobilePhone"><isNotNull property="mobilePhone">and mobilePhone = #mobilePhone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="wechat"><isNotNull property="wechat">and wechat = #wechat#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="cooperationType"><isNotNull property="cooperationType">and cooperationType = #cooperationType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="status"><isNotNull property="status">and status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="verifystatus"><isNotNull property="verifystatus">and verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="orderrule"><isNotNull property="orderrule">$orderrule$</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="page"><isNotNull property="page">$page$</isNotNull></isPropertyAvailable>
+	</select>
+	<select id="getUserAdList" resultMap="advertiserRS" parameterClass="advertiserVO">
+		select * from b_advertiser 
+		where userID = #userID#
+		order by datelastupdated desc
+	</select>
+	<update id="doUpdateAd" parameterClass="advertiserVO">
+		update b_advertiser set advertiserID = #advertiserID#
+		<isPropertyAvailable property="columnType"><isNotNull prepend="," property="columnType">columnType = #columnType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="prodName"><isNotNull prepend="," property="prodName">prodName = #prodName#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="platformType"><isNotNull prepend="," property="platformType">platformType = #platformType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="balanceType"><isNotNull prepend="," property="balanceType">balanceType = #balanceType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="viewType"><isNotNull prepend="," property="viewType">viewType = #viewType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="qq"><isNotNull prepend="," property="qq">qq = #qq#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="mobilePhone"><isNotNull prepend="," property="mobilePhone">mobilePhone = #mobilePhone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="wechat"><isNotNull prepend="," property="wechat">wechat = #wechat#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="cooperationType"><isNotNull prepend="," property="cooperationType">cooperationType = #cooperationType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="price"><isNotNull prepend="," property="price">price=#price#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="orgName"><isNotNull prepend="," property="orgName">orgName=#orgName#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="website"><isNotNull prepend="," property="website">website=#website#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">telephone=#telephone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">comments=#comments#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="status"><isNotNull prepend="," property="status">status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="verifystatus"><isNotNull prepend="," property="verifystatus">verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
+		where advertiserID = #advertiserID#
+	</update>
+	<delete id="doDeleteAd" parameterClass="advertiserVO">
+		delete b_advertiser where advertiserID = #advertiserID#
+	</delete>
+</sqlMap>
+
+

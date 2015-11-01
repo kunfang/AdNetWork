@@ -1,0 +1,103 @@
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="channel">
+	<typeAlias alias="channelVO" type="com.ftc.ad.vo.ChannelVO" />
+	
+	<cacheModel id="oneDayUrgerType" type="LRU">
+		<flushInterval hours="24" />
+	</cacheModel>
+	<resultMap id="channelRS" class="channelVO">
+		<result property="channelID" column="channelID" />
+		<result property="userID" column="userID" />
+		<result property="status" column="status" />
+		<result property="verifystatus" column="verifystatus" />
+		<result property="platformType" column="platformType" />
+		<result property="channeltype" column="channeltype" />
+		<result property="channelsize" column="channelsize" />
+		<result property="qq" column="qq" />
+		<result property="mobilePhone" column="mobilePhone" />
+		<result property="wechat" column="wechat" />
+		<result property="orgName" column="orgName" />
+		<result property="website" column="website" />
+		<result property="telephone" column="telephone" />
+		<result property="comments" column="comments" />
+		<result property="createdate" column="createdate" />
+		<result property="datelastupdated" column="datelastupdated" />
+	</resultMap>
+	
+	<insert id="doInsertChannel" parameterClass="channelVO">
+		INSERT INTO b_channel<dynamic><isParameterPresent>(userID,status,verifystatus
+		  <isPropertyAvailable property="platformType"><isNotNull prepend="," property="platformType">platformType</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="channeltype"><isNotNull prepend="," property="channeltype">channeltype</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="channelsize"><isNotNull prepend="," property="channelsize">channelsize</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="qq"><isNotNull prepend="," property="qq">qq</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="mobilePhone"><isNotNull prepend="," property="mobilePhone">mobilePhone</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="wechat"><isNotNull prepend="," property="wechat">wechat</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="orgName"><isNotNull prepend="," property="orgName">orgName</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="website"><isNotNull prepend="," property="website">website</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">telephone</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">comments</isNotNull></isPropertyAvailable>
+		  ,createdate,datelastupdated
+		) VALUES(#userID#,10,10
+		  <isPropertyAvailable property="platformType"><isNotNull prepend="," property="platformType">#platformType#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="channeltype"><isNotNull prepend="," property="channeltype">#channeltype#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="channelsize"><isNotNull prepend="," property="channelsize">#channelsize#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="qq"><isNotNull prepend="," property="qq">#qq#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="mobilePhone"><isNotNull prepend="," property="mobilePhone">#mobilePhone#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="wechat"><isNotNull prepend="," property="wechat">#wechat#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="orgName"><isNotNull prepend="," property="orgName">#orgName#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="website"><isNotNull prepend="," property="website">#website#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">#telephone#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">#comments#</isNotNull></isPropertyAvailable>
+		  ,SYSDATE(),SYSDATE()
+		)</isParameterPresent></dynamic> 
+	</insert>
+	
+	<select id="getChannelList" resultMap="channelRS" parameterClass="channelVO">
+		SELECT * FROM b_channel where 1=1
+		<isPropertyAvailable property="userID"><isNotNull property="userID"> and userID = #userID#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="channelID"><isNotNull property="channelID"> and channelID = #channelID#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="platformType"><isNotNull property="platformType"> and platformType = #platformType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="channeltype"><isNotNull property="channeltype"> and channeltype = #channeltype#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="channelsize"><isNotNull property="channelsize">and channelsize = #channelsize#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="qq"><isNotNull property="qq">and qq = #qq#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="mobilePhone"><isNotNull property="mobilePhone">and mobilePhone = #mobilePhone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="wechat"><isNotNull property="wechat">and wechat = #wechat#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="orgName"><isNotNull property="orgName">and orgName = #orgName#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="website"><isNotNull property="website">and website = #website#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="telephone"><isNotNull property="telephone">and telephone = #telephone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="comments"><isNotNull property="comments">and comments = #comments#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="status"><isNotNull property="status">and status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="verifystatus"><isNotNull property="verifystatus">and verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="orderrule"><isNotNull property="orderrule">$orderrule$</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="page"><isNotNull property="page">$page$</isNotNull></isPropertyAvailable>
+	</select>
+	
+	<select id="getUserChannelList" resultMap="channelRS" parameterClass="channelVO">
+		SELECT * FROM b_channel 
+		where userID = #userID#
+		order by datelastupdated desc
+	</select>
+	
+	<update id="doUpdateChannel" parameterClass="channelVO">
+		UPDATE b_channel SET channelID=#channelID#
+		<isPropertyAvailable property="platformType"><isNotNull prepend="," property="platformType">platformType=#platformType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="channeltype"><isNotNull prepend="," property="channeltype">channeltype=#channeltype#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="channelsize"><isNotNull prepend="," property="channelsize">channelsize=#channelsize#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="qq"><isNotNull prepend="," property="qq">qq=#qq#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="mobilePhone"><isNotNull prepend="," property="mobilePhone">mobilePhone=#mobilePhone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="wechat"><isNotNull prepend="," property="wechat">wechat=#wechat#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="orgName"><isNotNull prepend="," property="orgName">orgName=#orgName#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="website"><isNotNull prepend="," property="website">website=#website#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">telephone=#telephone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">comments=#comments#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="status"><isNotNull prepend="," property="status">status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="verifystatus"><isNotNull prepend="," property="verifystatus">verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
+		WHERE channelID=#channelID#
+	</update>
+	
+	<delete id="doDeleteChannel" parameterClass="channelVO">
+		delete b_channel where channelID = #channelID#
+	</delete>
+</sqlMap>
+
+

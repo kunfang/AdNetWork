@@ -186,7 +186,10 @@ public class AdvertiserVO {
 		return "order by createdate desc ";
 	}
 	public int getOrderruleValue() {
-		return orderrule==null?0:Integer.valueOf(orderrule);
+		if (orderrule==null || orderrule.length()==0) {
+			return 0;
+		}
+		return Integer.valueOf(orderrule);
 	}
 	public void setOrderrule(String orderrule) {
 		this.orderrule = orderrule;

@@ -104,7 +104,7 @@
 		where advertiserID = #advertiserID#
 	</update>
 	<delete id="doDeleteAd" parameterClass="advertiserVO">
-		delete b_advertiser where advertiserID = #advertiserID#
+		delete from b_advertiser where advertiserID = #advertiserID#
 	</delete>
 </sqlMap>
 

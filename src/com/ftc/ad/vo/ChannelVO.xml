@@ -96,7 +96,7 @@
 	</update>
 	
 	<delete id="doDeleteChannel" parameterClass="channelVO">
-		delete b_channel where channelID = #channelID#
+		delete from b_channel where channelID = #channelID#
 	</delete>
 </sqlMap>
 

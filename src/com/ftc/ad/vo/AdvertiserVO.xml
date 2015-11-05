@@ -75,6 +75,7 @@
 		<isPropertyAvailable property="cooperationType"><isNotNull property="cooperationType">and cooperationType = #cooperationType#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="status"><isNotNull property="status">and status=#status#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="verifystatus"><isNotNull property="verifystatus">and verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="pricesize"><isNotNull property="pricesize">$pricesize$</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="orderrule"><isNotNull property="orderrule">$orderrule$</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="page"><isNotNull property="page">$page$</isNotNull></isPropertyAvailable>
 	</select>

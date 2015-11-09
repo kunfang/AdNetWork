@@ -23,6 +23,7 @@
 		<result property="createdate" column="createdate" />
 		<result property="datelastupdated" column="datelastupdated" />
 		<result property="userID" column="userID" />
+		<result property="prodWay" column="prodWay" />
 	</resultMap>
 	
 	<insert id="doInsertAd" parameterClass="advertiserVO">
@@ -41,6 +42,7 @@
 		  <isPropertyAvailable property="website"><isNotNull prepend="," property="website">website</isNotNull></isPropertyAvailable>
 		  <isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">telephone</isNotNull></isPropertyAvailable>
 		  <isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">comments</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="prodWay"><isNotNull prepend="," property="prodWay">prodWay</isNotNull></isPropertyAvailable>
 		) VALUES(#userID#,10,10,SYSDATE(),SYSDATE()
 		  <isPropertyAvailable property="columnType"><isNotNull prepend="," property="columnType">#columnType#</isNotNull></isPropertyAvailable>
 		  <isPropertyAvailable property="prodName"><isNotNull prepend="," property="prodName">#prodName#</isNotNull></isPropertyAvailable>
@@ -56,6 +58,7 @@
 		  <isPropertyAvailable property="website"><isNotNull prepend="," property="website">#website#</isNotNull></isPropertyAvailable>
 		  <isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">#telephone#</isNotNull></isPropertyAvailable>
 		  <isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">#comments#</isNotNull></isPropertyAvailable>
+		  <isPropertyAvailable property="prodWay"><isNotNull prepend="," property="prodWay">#prodWay#</isNotNull></isPropertyAvailable>
 		)</isParameterPresent></dynamic> 
 	</insert>
 	
@@ -65,7 +68,7 @@
 		<isPropertyAvailable property="userID"><isNotNull property="userID"> and userID = #userID#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="advertiserID"><isNotNull property="advertiserID"> and advertiserID = #advertiserID#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="columnType"><isNotNull property="columnType"> and columnType = #columnType#</isNotNull></isPropertyAvailable>
-		<isPropertyAvailable property="prodName"><isNotNull property="prodName"> and prodName = #prodName#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="prodName"><isNotNull property="prodName"> and prodName like '%$prodName$%' </isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="platformType"><isNotNull property="platformType">and platformType = #platformType#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="balanceType"><isNotNull property="balanceType">and balanceType = #balanceType#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="viewType"><isNotNull property="viewType">and viewType = #viewType#</isNotNull></isPropertyAvailable>
@@ -74,11 +77,35 @@
 		<isPropertyAvailable property="wechat"><isNotNull property="wechat">and wechat = #wechat#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="cooperationType"><isNotNull property="cooperationType">and cooperationType = #cooperationType#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="status"><isNotNull property="status">and status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="prodWay"><isNotNull property="prodWay">and prodWay=#prodWay#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="comments"><isNotNull property="comments">and comments like '%$comments$%'</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="verifystatus"><isNotNull property="verifystatus">and verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="pricesize"><isNotNull property="pricesize">$pricesize$</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="orderrule"><isNotNull property="orderrule">$orderrule$</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="page"><isNotNull property="page">$page$</isNotNull></isPropertyAvailable>
 	</select>
+	
+	<select id="getAdListCount" resultMap="advertiserRS" parameterClass="advertiserVO">
+		select * from b_advertiser
+		where 1=1
+		<isPropertyAvailable property="userID"><isNotNull property="userID"> and userID = #userID#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="advertiserID"><isNotNull property="advertiserID"> and advertiserID = #advertiserID#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="columnType"><isNotNull property="columnType"> and columnType = #columnType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="prodName"><isNotNull property="prodName"> and prodName like '%$prodName$%' </isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="platformType"><isNotNull property="platformType">and platformType = #platformType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="balanceType"><isNotNull property="balanceType">and balanceType = #balanceType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="viewType"><isNotNull property="viewType">and viewType = #viewType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="qq"><isNotNull property="qq">and qq = #qq#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="mobilePhone"><isNotNull property="mobilePhone">and mobilePhone = #mobilePhone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="wechat"><isNotNull property="wechat">and wechat = #wechat#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="cooperationType"><isNotNull property="cooperationType">and cooperationType = #cooperationType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="status"><isNotNull property="status">and status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="prodWay"><isNotNull property="prodWay">and prodWay=#prodWay#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="comments"><isNotNull property="comments">and comments like '%$comments$%'</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="verifystatus"><isNotNull property="verifystatus">and verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="pricesize"><isNotNull property="pricesize">$pricesize$</isNotNull></isPropertyAvailable>
+	</select>
+	
 	<select id="getUserAdList" resultMap="advertiserRS" parameterClass="advertiserVO">
 		select * from b_advertiser 
 		where userID = #userID#
@@ -101,9 +128,18 @@
 		<isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">telephone=#telephone#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">comments=#comments#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="status"><isNotNull prepend="," property="status">status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="prodWay"><isNotNull prepend="," property="prodWay">prodWay=#prodWay#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="verifystatus"><isNotNull prepend="," property="verifystatus">verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
 		where advertiserID = #advertiserID#
 	</update>
+	
+	<update id="doUpdateBatchAd" parameterClass="advertiserVO">
+		update b_advertiser set advertiserID = #advertiserID#
+		<isPropertyAvailable property="status"><isNotNull prepend="," property="status">status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="verifystatus"><isNotNull prepend="," property="verifystatus">verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
+		where advertiserID = #advertiserID#
+	</update>
+	
 	<delete id="doDeleteAd" parameterClass="advertiserVO">
 		delete from b_advertiser where advertiserID = #advertiserID#
 	</delete>

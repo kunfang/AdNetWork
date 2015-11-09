@@ -12,4 +12,5 @@ public interface AdvertiserService {
 	public void updateAdvertiser(AdvertiserVO advertiser) throws Exception;
 	public void deleteAdvertiser(AdvertiserVO advertiser) throws Exception;
 	AdvertiserVO getAdvertiserByID(AdvertiserVO advertiser) throws Exception;
+	public void updateBatchAdvertiser(AdvertiserVO advertiser,String ids) throws Exception;
 }

@@ -23,6 +23,8 @@ public class AdvertiserVO {
 	private Date createdate;
 	private Date datelastupdated;
 	private Integer userID;
+	private Integer prodWay; //投放形式
+	private String pageStr;//用于拼接分页Sql
 	
 	public Integer getUserID() {
 		return userID;
@@ -208,6 +210,18 @@ public class AdvertiserVO {
 	}
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
+	}
+	public Integer getProdWay() {
+		return prodWay;
+	}
+	public void setProdWay(Integer prodWay) {
+		this.prodWay = prodWay;
+	}
+	public String getPageStr() {
+		return pageStr;
+	}
+	public void setPageStr(String pageStr) {
+		this.pageStr = pageStr;
 	}
 	
 }

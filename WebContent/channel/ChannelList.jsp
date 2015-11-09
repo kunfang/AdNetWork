@@ -13,10 +13,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style type="text/css">
+          body {
+		    width: 100%;
+		    margin: 40px auto;
+		    font-family: 'trebuchet MS', 'Lucida sans', Arial;
+		    font-size: 14px;
+		    color: #444;
+	      }
+
+		  table {
+		    *border-collapse: collapse; /* IE7 and lower */
+		    border-spacing: 0;
+		    width: 100%;    
+		  }
+		  
+		  span:hover{color:#e95c15;}
+     </style>
 <%@ include file="/common/include.jsp" %>
 </head>
 <body>
 <%@ include file="/header.jsp" %>
+<form:form commandName="channelVO" method="post" action="channel.do" name="myform">
 <div class="container_before">
 	<div class="content-wrap">
 		<div class="content" style="margin-bottom:30px;">
@@ -150,42 +168,47 @@
 				</table>
 			</div>
 			<div class="jobs_info">
-				<div class="jobs_info_title">
-					<div style="width: 70px;">类型</div>
-	          		<div style="width: 270px;">详情</div>
-	          		<div style="width: 80px;">发布时间</div>
-	          		<div style="width: 170px;">QQ</div>
-	          		<div style="width: 120px;">量级</div>
-				</div>
+			     <table class="zebra">
+				    <thead>
+				    <tr>
+				        <th width="8%" align="center">类型</th>
+				        <th width="40%">详情</th> 
+				        <th width="8%">发布时间</th> 
+				        <th width="34%">QQ</th>      
+				        <th width="10%">量级</th>
+				    </tr>
+				    </thead>
+				    <tfoot>
+				    <tr>
+				        <td>&nbsp;</td>        
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				    </tr>
+				    </tfoot>
+				
 				<c1:forEach items="${channelList}" var="channelList" >
-	          	<%ChannelVO channel = (ChannelVO)pageContext.getAttribute("channelList"); %>
-	          	<div id="jobs_data" style="display: block;">
-	          		<%
+	          	<%ChannelVO channel = (ChannelVO)pageContext.getAttribute("channelList"); 
 	          			String channeltypeName = DictionaryMap.getDicDesc("channeltype", channel.getChanneltype());
 	          			String platformTypeName = DictionaryMap.getDicDesc("channelplat", channel.getPlatformType());
 	          			String channelsizeName = DictionaryMap.getDicDesc("channelsize", channel.getChannelsize());
 	          		%>
-	          		<div class="el" style="background-color: rgb(255, 255, 255);">
-	          			<div class="type">[<%=channeltypeName %>]<br><span><%=platformTypeName %></span></div>
-	          			<div class="name"><a href="#" target="_self">${channelList.comments}</a></div>
-	          			<div class="detail" style="width:840px;">
-	          				<span class="company">${channelList.orgName}</span>
-	          				<span class="but" style="width: 260px;">
-	          					<span class="time"><fmt:formatDate value="${channelList.datelastupdated}" pattern="yyyy-MM-dd"/></span>
-	          					<span class="location">${channelList.qq}</span>
-	          				</span>
-	          				<div class="money" style="width: 160px; margin-left:0px;"><span style="width: 160px;"><%=channelsizeName %></span></div>
-	          			</div>
-	          		</div>
-	          	</div>
+	          		<tr>
+					        <td align="left"><font style="font-size: 18px;color: #959595;">[<%=channeltypeName %>]<%=platformTypeName %></font></td>        
+					        <td align="left"><a href="#" target="_self"><font style="font-size: 16px;color: #000;"><span>${channelList.comments}</span></font></a></td>
+					        <td align="left"><font style="color: #959595;"><fmt:formatDate value="${channelList.datelastupdated}" pattern="yyyy-MM-dd"/></font></td>
+					        <td align="left"><font style="color: #959595;">${channelList.qq}</font></td>
+					        <td align="left"><font style="color: #f90;font-weight: bold;font-size: 20px;"><%=channelsizeName %></font></td>
+					 </tr> 
 	          	</c1:forEach>
+	          	</table>
 	          	<%@ include file="/common/pageLocation.jsp" %>
 			</div>
 		</div>
 	</div>
 </div>
 <%@ include file="/footer.jsp" %>
-<form:form commandName="adVO" method="post" action="channel.do" name="myform">
 	<input type="hidden" name="method" value="getChannelList"/>
 	<input type="hidden" name="platformType" value=""/>
 	<input type="hidden" name="channeltype" value=""/>
@@ -217,6 +240,7 @@ function refreshData() {
 		}
     });
 	$("input:hidden[name='page']").val(page);
+	document.getElementById("curPage").value=page;
 	document.myform.submit();
 }
 function ChangePage(obj, i){

@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.ftc.ad.service.SysMenuService;
+import com.ftc.ad.vo.RoleVO;
 import com.ftc.ad.vo.SysMenuVO;
 import com.ftc.ad.vo.User;
 import com.ftc.foundation.dao.DefaultDAO;
@@ -110,6 +111,20 @@ public class SysMenuServiceImpl implements SysMenuService {
 			logger.debug("doUpdate(User) - end"); //$NON-NLS-1$
 		}
 		return returnint;
+	}
+	
+	@Override
+	public List<RoleVO> getRoleList(RoleVO role) throws Exception {
+		if (logger.isDebugEnabled()) {
+			logger.debug("getRoleList() - start"); //$NON-NLS-1$
+		}
+		List<RoleVO> roleList=new ArrayList<RoleVO>();
+		roleList=dao.toList("role.getRoleList", role);
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("getRoleList() - end"); //$NON-NLS-1$
+		}
+		return roleList;
 	}
 
 

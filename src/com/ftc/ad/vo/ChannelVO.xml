@@ -65,11 +65,29 @@
 		<isPropertyAvailable property="orgName"><isNotNull property="orgName">and orgName = #orgName#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="website"><isNotNull property="website">and website = #website#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="telephone"><isNotNull property="telephone">and telephone = #telephone#</isNotNull></isPropertyAvailable>
-		<isPropertyAvailable property="comments"><isNotNull property="comments">and comments = #comments#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="comments"><isNotNull property="comments">and comments like '%$comments$%' </isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="status"><isNotNull property="status">and status=#status#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="verifystatus"><isNotNull property="verifystatus">and verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="orderrule"><isNotNull property="orderrule">$orderrule$</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="page"><isNotNull property="page">$page$</isNotNull></isPropertyAvailable>
+	</select>
+	
+	<select id="getChannelListCount" resultMap="channelRS" parameterClass="channelVO">
+		SELECT * FROM b_channel where 1=1
+		<isPropertyAvailable property="userID"><isNotNull property="userID"> and userID = #userID#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="channelID"><isNotNull property="channelID"> and channelID = #channelID#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="platformType"><isNotNull property="platformType"> and platformType = #platformType#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="channeltype"><isNotNull property="channeltype"> and channeltype = #channeltype#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="channelsize"><isNotNull property="channelsize">and channelsize = #channelsize#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="qq"><isNotNull property="qq">and qq = #qq#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="mobilePhone"><isNotNull property="mobilePhone">and mobilePhone = #mobilePhone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="wechat"><isNotNull property="wechat">and wechat = #wechat#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="orgName"><isNotNull property="orgName">and orgName = #orgName#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="website"><isNotNull property="website">and website = #website#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="telephone"><isNotNull property="telephone">and telephone = #telephone#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="comments"><isNotNull property="comments">and comments like '%$comments$%' </isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="status"><isNotNull property="status">and status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="verifystatus"><isNotNull property="verifystatus">and verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
 	</select>
 	
 	<select id="getUserChannelList" resultMap="channelRS" parameterClass="channelVO">
@@ -90,6 +108,13 @@
 		<isPropertyAvailable property="website"><isNotNull prepend="," property="website">website=#website#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="telephone"><isNotNull prepend="," property="telephone">telephone=#telephone#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="comments"><isNotNull prepend="," property="comments">comments=#comments#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="status"><isNotNull prepend="," property="status">status=#status#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="verifystatus"><isNotNull prepend="," property="verifystatus">verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
+		WHERE channelID=#channelID#
+	</update>
+	
+	<update id="doUpdateBatchChannel" parameterClass="channelVO">
+		UPDATE b_channel SET channelID=#channelID#
 		<isPropertyAvailable property="status"><isNotNull prepend="," property="status">status=#status#</isNotNull></isPropertyAvailable>
 		<isPropertyAvailable property="verifystatus"><isNotNull prepend="," property="verifystatus">verifystatus=#verifystatus#</isNotNull></isPropertyAvailable>
 		WHERE channelID=#channelID#

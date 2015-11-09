@@ -52,14 +52,18 @@ public class ChannelController {
 	}
 	
 	@RequestMapping(params="method=getChannelList") 
-	public String getChannelList(ChannelVO channel, Model model,PageUtil pUtil){
+	public String getChannelList(String isflag,ChannelVO channel, Model model,PageUtil pUtil){
 		if (logger.isDebugEnabled()) {
 			logger.debug("getChannelList(ChannelVO) - start"); //$NON-NLS-1$
 		}
-		
+		String result="channel/ChannelList";
 		try {
-			channel.setStatus(20);
-			channel.setVerifystatus(20);
+			if(isflag==null || "".equals(isflag)){
+				channel.setStatus(20);
+				channel.setVerifystatus(20);
+			}else{
+				result="channel/VerifyChannelListUpdateAll";
+			}
 			
 			int totalQty = service.getChannelList(channel, null).size();
 			
@@ -89,7 +93,7 @@ public class ChannelController {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getChannelList(ChannelVO) - start"); //$NON-NLS-1$
 		}
-		return "channel/ChannelList";
+		return result;
 	}
 	
 	@RequestMapping(params="method=getVerifyChannelList") 
@@ -222,5 +226,23 @@ public class ChannelController {
 			logger.debug("updateChannel(ChannelVO) - start"); //$NON-NLS-1$
 		}
 		return "channel/ChannelEdit";
+	}
+	
+	@RequestMapping(params="method=updateBatchChannel")
+	public String updateBatchChannel(ChannelVO channel,String ids){
+		if (logger.isDebugEnabled()) {
+			logger.debug("updateBatchChannel(ChannelVO,ids) - start"); //$NON-NLS-1$
+		}
+		try {
+			service.updateBatchChannel(channel,ids);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("occur error when update channel:"+e);
+		}
+		if (logger.isDebugEnabled()) {
+			logger.debug("updateBatchChannel(ChannelVO,ids) - start"); //$NON-NLS-1$
+		}
+		
+		return "redirect:channel.do?method=getChannelList&isflag=Y";
 	}
 }

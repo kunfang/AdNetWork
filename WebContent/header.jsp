@@ -10,6 +10,7 @@
 		</c1:when>
 		<c1:otherwise>
 			<a href="channel.do?method=getUserChannelList" class="dl" style="padding-right: 10px"><i class="fa fa-user"></i>${user.username}</a>
+			<a href="userLoginlist.do?method=pwd&isnew=Y" class="zc" title="密码修改">&nbsp;&nbsp;<i class="fa fa-sign-out"></i>密码修改</a>
 			<a href="userLoginlist.do?method=logout" class="zc" title="退出"><i class="fa fa-sign-out"></i>退出</a>
 		</c1:otherwise>
 		</c1:choose>

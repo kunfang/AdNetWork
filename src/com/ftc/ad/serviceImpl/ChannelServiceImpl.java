@@ -54,7 +54,20 @@ public class ChannelServiceImpl implements ChannelService {
 		List<ChannelVO> channelList = null;
 			try {
 			     dao.startTransaction();
-			     channelList = (List<ChannelVO>)dao.toList("channel.getChannelList",channel);
+			     if(pUtil!=null){
+			    	 if(channel.getPage()==null || "".equals(channel.getPage())){
+			    		 channel.setPage("1");
+				     }
+				     if(channel.getPageSize()==null || "".equals(channel.getPageSize())){
+				    	 channel.setPageSize(pUtil.getPageSize());
+				     }
+			    	 
+			    	 channelList = (List<ChannelVO>)dao.toList("channel.getChannelList",channel);
+			     }else{
+			    	 
+			    	 channelList = (List<ChannelVO>)dao.toList("channel.getChannelListCount",channel);
+			     }
+			     
 				 
 			} catch (Exception e) {
 				dao.endTransaction();
@@ -150,6 +163,34 @@ public class ChannelServiceImpl implements ChannelService {
 			logger.debug("getChannelByID(ChannelVO) - end"); //$NON-NLS-1$
 		}
 		return null;
+	}
+	@Override
+	public void updateBatchChannel(ChannelVO channel, String ids)
+			throws Exception {
+		if (logger.isDebugEnabled()) {
+			logger.debug("updateBatchChannel(ChannelVO,ids) - start"); //$NON-NLS-1$
+		}
+		try{
+			dao.startTransaction();
+			if(ids!=null && !"".equals(ids)){
+				String[] id=ids.split(",");
+				for(int i=0;i<id.length;i++){
+					channel.setChannelID(Integer.valueOf(id[i]));
+			        dao.doInsert("channel.doUpdateBatchChannel", channel);
+				}
+			}
+			dao.commitTransation();
+		}catch(Exception e){
+			e.printStackTrace();
+			dao.endTransaction();
+		}finally{
+			dao.endTransaction();
+		}
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("updateBatchChannel(ChannelVO,ids) - end"); //$NON-NLS-1$
+		}
+		
 	}
 
 }

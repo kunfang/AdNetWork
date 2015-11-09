@@ -15,26 +15,26 @@
 </head>
 <body>
 <%@ include file="/header.jsp" %>
-<div class="container">
-	<div class="main_1200 clearfix">
+<div class="container" >
+	<div class="main_1200 clearfix" >
 		<%@ include file="/menu.jsp" %>
-		<div class="xc_rightbox">
+		<div class="xc_rightbox" >
 			<ul>
 				<b>您当前的位置 - 产品审核列表</b>
 			</ul>
-			<div class="leshu_table">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<div class="leshu_table" style="overflow-x:auto;overflow-y:hidden;">
+			<table width="1450px"  border="0" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr class="title">
-					<td width="10%">产品名称</td>
-					<td width="10%">发布时间</td>
-					<td width="10%">系统</td>
-					<td width="10%">单价（元）</td>
-					<td width="10%">结算方式</td>
-					<td width="10%">数据查看</td>
-					<td width="10%">QQ</td>
-					<td>详情</td>
-					<td width="10%">操作</td>
+					<td width="100px">产品名称</td>
+					<td width="100px">发布时间</td>
+					<td width="80px">系统</td>
+					<td width="100px">单价（元）</td>
+					<td width="80px">结算方式</td>
+					<td width="80px">数据查看</td>
+					<td width="100px">QQ</td>
+					<td width="100px">详情</td>
+					<td width="100px">操作</td>
 				</tr>
 				<c1:forEach items="${advertiserList}" var="advertiserList" >
 				<%
@@ -53,7 +53,7 @@
 				%>
 				<tr>
 					<td>
-                        <a onclick="getAdInfo(${advertiserList.advertiserID})">${advertiserList.prodName}</a>
+                        ${advertiserList.prodName}
 					</td>
 					<td><fmt:formatDate value="${advertiserList.datelastupdated}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 					<td><%=platformTypeName %></td>
@@ -61,7 +61,7 @@
 					<td><%=balanceTypeName %></td>
 					<td><%=viewTypeName %></td>
 					<td>${advertiserList.qq}</td>
-					<td>${advertiserList.comments}</td>
+					<td width="10%">${advertiserList.comments}</td>
 					<td>
 						<input type="button" class="leshu_a_w2" value="审核通过" onclick="verifyAd(${advertiserList.advertiserID},20)">
 						<input type="button" class="leshu_a_w2" value="审核拒绝" onclick="verifyAd(${advertiserList.advertiserID},99)">
@@ -88,6 +88,13 @@
 		document.myform.verifystatus.value=status;
 		document.myform.submit();
 	}
+	
+	function getAdInfo(id) {
+		document.myform.method.value="getAdInfo";
+		document.myform.advertiserID.value=id;
+		document.myform.submit();
+	}
+	
 	$("#navboxuser").addClass("current");
 </script>
 </html>

@@ -2,6 +2,7 @@ package com.ftc.ad.service;
 
 import java.util.List;
 
+import com.ftc.ad.vo.RoleVO;
 import com.ftc.ad.vo.SysMenuVO;
 import com.ftc.ad.vo.User;
 
@@ -16,4 +17,6 @@ public interface SysMenuService {
 	public User toView(String empCde) throws Exception;
 	
 	public int doUpdate(User vo) throws Exception;
+	
+	public List<RoleVO> getRoleList(RoleVO role) throws Exception;
 }

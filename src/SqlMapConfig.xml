@@ -21,5 +21,6 @@
 	 <sqlMap resource="com/ftc/ad/vo/AdvertiserVO.xml"/>
 	 <sqlMap resource="com/ftc/ad/vo/ChannelVO.xml"/>
 	 <sqlMap resource="com/ftc/ad/vo/DictionaryVO.xml"/>
+	 <sqlMap resource="com/ftc/ad/vo/RoleVO.xml"/>
 </sqlMapConfig>
 

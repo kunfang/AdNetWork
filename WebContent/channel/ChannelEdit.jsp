@@ -123,7 +123,7 @@
 			                </dd>
 			           </dl>
 			           <div class="tijiao">
-					   		<input type="submit" value="保存产品信息" style="float: left;">
+					   		<input type="submit" value="保存渠道信息" style="float: left;">
 					   		<input type="button" value="重置" style="width: 70px;float: left;margin-left: 10px;background: #e95c15;" onclick="reset()">
 				       </div>
 					</div><!--/.row-->	

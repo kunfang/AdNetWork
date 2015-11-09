@@ -1,0 +1,27 @@
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="role">
+	<typeAlias alias="roleVO" type="com.ftc.ad.vo.RoleVO" />
+	
+	<cacheModel id="oneDayUrgerType" type="LRU">
+		<flushInterval hours="24" />
+	</cacheModel>
+	
+	<resultMap id="roleRS" class="roleVO">
+		<result property="roleId" column="RoleId" />
+		<result property="roleName" column="RoleName" />
+		<result property="comments" column="Comments" />
+	</resultMap>
+	
+	<select id="getRoleList" resultMap="roleRS" parameterClass="roleVO">
+		SELECT * FROM s_role where 1=1
+		<isPropertyAvailable property="roleId"><isNotNull property="roleId"> and RoleId = #roleId#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="roleName"><isNotNull property="roleName"> and RoleName = #roleName#</isNotNull></isPropertyAvailable>
+		<isPropertyAvailable property="comments"><isNotNull property="comments"> and Comments = #comments#</isNotNull></isPropertyAvailable>
+	</select>
+	
+	<delete id="doDeleteRole" parameterClass="roleVO">
+		delete from s_role where RoleId = #roleId#
+	</delete>
+</sqlMap>
+
+

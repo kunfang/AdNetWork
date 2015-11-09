@@ -12,10 +12,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+     <style type="text/css">
+          body {
+		    width: 100%;
+		    margin: 40px auto;
+		    font-family: 'trebuchet MS', 'Lucida sans', Arial;
+		    font-size: 14px;
+		    color: #444;
+	      }
+
+		  table {
+		    *border-collapse: collapse; /* IE7 and lower */
+		    border-spacing: 0;
+		    width: 100%;    
+		  }
+		  span:hover{color:#e95c15;}
+     </style>
 <%@ include file="/common/include.jsp" %>
+
 </head>
 <body>
 <%@ include file="/header.jsp" %>
+<form:form commandName="adVO" method="post" action="advertiser.do" name="myform">
 <div class="container_before">
 	<div class="content-wrap">
 		<div class="content" style="margin-bottom:30px;">
@@ -210,6 +228,36 @@
 								</c1:forEach>
 							</td>
 						</tr>
+						<c1:choose>
+							<c1:when test="${searchInfo.prodWay==null}">
+								<tr class="js_job" id="prodWay" value="all">
+							</c1:when>
+							<c1:otherwise>
+								<tr class="js_job" id="prodWay" value="${searchInfo.prodWay}">
+							</c1:otherwise>
+						</c1:choose>
+						<td class="first">投放形式</td>
+						<td class="third">
+							<c1:choose>
+								<c1:when test="${searchInfo.prodWay==null}">
+									<span class="on" value="all">全部</span>
+								</c1:when>
+								<c1:otherwise>
+									<span value="all">全部</span>
+								</c1:otherwise>
+							</c1:choose>
+							<c1:forEach items="${wayList}" var="wayList" >
+							<c1:choose>
+								<c1:when test="${searchInfo.prodWay==wayList.value}">
+									<span class="on" value="${wayList.value}">${wayList.valuename}</span>
+								</c1:when>
+								<c1:otherwise>
+									<span value="${wayList.value}">${wayList.valuename}</span>
+								</c1:otherwise>
+							</c1:choose>
+							</c1:forEach>
+						</td>
+					</tr>
 						<tr class="js_job" id="orderrule" value="<%=orderruleStr%>">
 							<td class="first">排序规则</td>
 							<td class="third">
@@ -234,52 +282,65 @@
 				</table>
 			</div>
 			<div class="jobs_info">
-				<div class="jobs_info_title">
-					<div style="width: 70px;">类型</div>
-	          		<div style="width: 270px;">名称</div>
-	          		<div style="width: 80px;">发布时间</div>
-	          		<div style="width: 170px;">结算</div>
-	          		<div style="width: 120px;">单价</div>
-	          		<div style="width: 80px;">QQ</div>
-	          		<div style="width: 280px;">详情</div>
-				</div>
-				<c1:forEach items="${advertiserList}" var="advertiserList" >
-	          	<%AdvertiserVO ad = (AdvertiserVO)pageContext.getAttribute("advertiserList"); %>
-	          	<div id="jobs_data" style="display: block;">
-	          		<% 
-	          			String columnTypeName = DictionaryMap.getDicDesc("channeltype", ad.getColumnType());
-	          			String platformTypeName = DictionaryMap.getDicDesc("channelplat", ad.getPlatformType());
-	          			String balanceTypeName = DictionaryMap.getDicDesc("balancetype", ad.getBalanceType());
-	          			String viewTypeName = DictionaryMap.getDicDesc("viewtype", ad.getViewType());
-	          		%>
-	          		<div class="el" style="background-color: rgb(255, 255, 255);">
-	          			<div class="type">[<%=columnTypeName %>]<br><span><%=platformTypeName %></span></div>
-	          			<div class="name"><a href="#" target="_self">${advertiserList.prodName}</a><span style="display: none;" class="show_detail">查看详情</span></div>
-	          			<div class="detail" style="width:840px;">
-	          				<span class="company">${advertiserList.orgName}</span>
-	          				<span class="but" style="width: 260px;">
-	          					<span class="time"><fmt:formatDate value="${advertiserList.datelastupdated}" pattern="yyyy-MM-dd"/></span>
-	          					<span class="location"><%=balanceTypeName %>（<%=viewTypeName %>）</span>
-	          				</span>
-	          				<div class="money" style="width: 100px; margin-left:0px;"><span style="width: 100px;">${advertiserList.price}</span></div>
-	          				<span style="width: 80px;float: left;">${advertiserList.qq}</span>
-	          				<span>${advertiserList.comments}</span>
-	          			</div>
-	          		</div>
-	          	</div>
-	          	</c1:forEach>
-	          	<%@ include file="/common/pageLocation.jsp" %>
+			    <table class="zebra">
+				    <thead>
+				    <tr>
+				        <th width="10%">类型</th>        
+				        <th width="12%">名称</th>
+				        <th width="9%">发布时间</th>
+				        <th width="11%">结算</th>
+				        <th width="7%">投放形式</th>
+				        <th width="11%">单价</th>
+				        <th width="10%">QQ</th>
+				        <th width="30%">详情</th>
+				    </tr>
+				    </thead>
+				    <tfoot>
+				    <tr>
+				        <td>&nbsp;</td>        
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				        <td></td>
+				    </tr>
+				    </tfoot>  
+				    <c1:forEach items="${advertiserList}" var="advertiserList" >  
+				       <%
+				          AdvertiserVO ad = (AdvertiserVO)pageContext.getAttribute("advertiserList"); 
+				          String columnTypeName = DictionaryMap.getDicDesc("channeltype", ad.getColumnType());
+	          			  String platformTypeName = DictionaryMap.getDicDesc("channelplat", ad.getPlatformType());
+	          			  String balanceTypeName = DictionaryMap.getDicDesc("balancetype", ad.getBalanceType());
+	          			  String viewTypeName = DictionaryMap.getDicDesc("viewtype", ad.getViewType());
+	          			  String wayName = DictionaryMap.getDicDesc("verifyWay", ad.getProdWay()); //投放形式
+				       %>
+					    <tr>
+					        <td align="left"><font style="font-size: 18px;color: #959595;">[<%=columnTypeName %>]<%=platformTypeName %></font></td>        
+					        <td align="left"><a href="#" target="_self"><font style="font-size: 16px;color: #000;"><span>${advertiserList.prodName}</span></font></a></td>
+					        <td align="left"><font style="color: #959595;"><fmt:formatDate value="${advertiserList.datelastupdated}" pattern="yyyy-MM-dd"/></font></td>
+					        <td align="left"><font style="color: #959595;"><%=balanceTypeName %>（<%=viewTypeName %>）</font></td>
+					        <td align="left"><font style="color: #959595;"><%=wayName %></font></td>
+					        <td align="left" class="money"><font style="color: #f90;font-weight: bold;font-size: 20px;">${advertiserList.price}</font></td>
+					        <td align="left"><font style="color: #959595;">${advertiserList.qq}</font></td>
+					        <td align="left"><font style="color: #959595;">${advertiserList.comments}</font></td>
+					    </tr> 
+				    </c1:forEach>
+				    
+				</table>
+				<%@ include file="/common/pageLocation.jsp" %>   
 			</div>
 		</div>
 	</div>
 </div>
-<form:form commandName="adVO" method="post" action="advertiser.do" name="myform">
 	<input type="hidden" name="method" value="getAdvertiserList"/>
 	<input type="hidden" name="columnType" value=""/>
 	<input type="hidden" name="platformType" value=""/>
 	<input type="hidden" name="balanceType" value=""/>
 	<input type="hidden" name="viewType" value=""/>
 	<input type="hidden" name="cooperationType" value=""/>
+	<input type="hidden" name="prodWay" value=""/>
 	<input type="hidden" name="pricesize"/>
 	<input type="hidden" name="orderrule"/>
 	<input type="hidden" name="page"/>
@@ -309,7 +370,9 @@ function refreshData() {
 			$("input:hidden[name='"+id+"']").val(value);
 		}
     });
+	
 	$("input:hidden[name='page']").val(page);
+	document.getElementById("curPage").value=page;
 	document.myform.submit();
 }
 function ChangePage(obj, i){

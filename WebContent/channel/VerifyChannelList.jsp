@@ -27,12 +27,12 @@
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr class="title">
-					<td width="10%">类型</td>
+					<td width="8%">类型</td>
 					<td width="10%">发布时间</td>
-					<td width="10%">终端</td>
-					<td width="10%">量级</td>
+					<td width="8%">终端</td>
+					<td width="8%">量级</td>
 					<td width="10%">QQ</td>
-					<td>详情</td>
+					<td width="20%">详情</td>
 					<td width="10%">操作</td>
 				</tr>
 				<c1:forEach items="${channelList}" var="channelList" >

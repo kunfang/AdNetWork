@@ -53,15 +53,28 @@ public class AdvertiserServiceImpl implements AdvertiserService {
 			logger.debug("getAdvertiserList(AdvertiserVO) - start"); //$NON-NLS-1$
 		}
 		List<AdvertiserVO> advertiserList = null;
+		// String sqlWhere="";
 			try {
 			     dao.startTransaction();
-			     advertiserList = (List<AdvertiserVO>)dao.toList("advertiser.getAdList",advertiser);
-				 
+			     if(pUtil!=null){
+			    	 if(advertiser.getPage()==null || "".equals(advertiser.getPage())){
+				    	 advertiser.setPage("1");
+				     }
+				     if(advertiser.getPageSize()==null || "".equals(advertiser.getPageSize())){
+				    	 advertiser.setPageSize(pUtil.getPageSize());
+				     }
+				     advertiserList = (List<AdvertiserVO>)dao.toList("advertiser.getAdList",advertiser);
+			     }else{
+			    	 //返回总的条数
+			    	 advertiserList = (List<AdvertiserVO>)dao.toList("advertiser.getAdListCount",advertiser);
+			     }
+			     
+			     dao.commitTransation();
 			} catch (Exception e) {
 				dao.endTransaction();
 				e.printStackTrace();
 			}finally{
-				dao.commitTransation();
+				dao.endTransaction();
 			}
 			
 		if (logger.isDebugEnabled()) {
@@ -69,6 +82,7 @@ public class AdvertiserServiceImpl implements AdvertiserService {
 		}
 		return advertiserList;
 	}
+	
 	@Override
 	public List<AdvertiserVO> getUserAdvertiserList(AdvertiserVO advertiser,
 			PageUtil pUtil) throws Exception {
@@ -157,6 +171,33 @@ public class AdvertiserServiceImpl implements AdvertiserService {
 			logger.debug("getAdvertiserByID(AdvertiserVO) - end"); //$NON-NLS-1$
 		}
 		return null;
+	}
+	@Override
+	public void updateBatchAdvertiser(AdvertiserVO advertiser,String ids) throws Exception {
+		if (logger.isDebugEnabled()) {
+			logger.debug("updateBatchAdvertiser(AdvertiserVO) - start"); //$NON-NLS-1$
+		}
+		try{
+			dao.startTransaction();
+			if(ids!=null && !"".equals(ids)){
+				String[] id=ids.split(",");
+				for(int i=0;i<id.length;i++){
+					advertiser.setAdvertiserID(Integer.valueOf(id[i]));
+					dao.doUpdate("advertiser.doUpdateBatchAd", advertiser);
+				}
+			}
+			dao.commitTransation();
+		}catch(Exception e){
+			e.printStackTrace();
+			dao.endTransaction();
+		}finally{
+			dao.endTransaction();
+		}
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("updateBatchAdvertiser(AdvertiserVO) - end"); //$NON-NLS-1$
+		}
+		
 	}
 
 }

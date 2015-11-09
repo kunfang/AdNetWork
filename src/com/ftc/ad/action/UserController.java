@@ -1,9 +1,14 @@
 package com.ftc.ad.action;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ftc.ad.service.SysMenuService;
 import com.ftc.ad.service.UserService;
+import com.ftc.ad.vo.RoleVO;
 import com.ftc.ad.vo.SysMenuVO;
 import com.ftc.ad.vo.User;
 @Controller("userController")
@@ -47,7 +53,7 @@ public class UserController {
      *@description [获得菜单清单]
      */
 	@RequestMapping(params="method=getAssessSysMenubyList") 
-	public String getAssessSysMenubyList(com.ftc.ad.vo.User user,Model model,HttpServletRequest request) {
+	public String getAssessSysMenubyList(String fx,com.ftc.ad.vo.User user,Model model,HttpServletRequest request,HttpServletResponse response) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getAssessSysMenubyList(ProductVO) - start"); //$NON-NLS-1$
 		}
@@ -83,11 +89,18 @@ public class UserController {
 			request.getSession().setAttribute("userId", listAllUser.get(0).getUserid());
 			request.getSession().setAttribute("trueName", listAllUser.get(0).getUsername());
 			request.getSession().setAttribute("userInfo", listAllUser.get(0));
-		} catch (Exception e) {
+			
+            if(fx!=null && "Y".equals(fx)){
+            	UserController.addCookie(response , "loginName" ,URLDecoder.decode(listAllUser.get(0).getUsername(), "utf-8")  , 30*24*60*60); 
+            }else{
+            	UserController.addCookie(response , "loginName" ,null , 0); 
+            }
+	        
+	   } catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorInfo","Login Error!!!");
 			return "login";
-		} 
+	   } 
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("getAssessSysMenubyList(ProductVO) - end"); //$NON-NLS-1$
@@ -97,9 +110,15 @@ public class UserController {
 		return "redirect:advertiser.do?method=getUserAdvertiserList";  
 	}
 	
-	
+	public static void addCookie(HttpServletResponse response,String name,String value,int maxAge){ 
+		Cookie cookie = new Cookie(name,value); 
+		cookie.setPath("/"); 
+		if(maxAge>0){   
+		   cookie.setMaxAge(maxAge); 
+		} 
+		   response.addCookie(cookie); 
+	} 
 
-	
 	/**
      *@param  [String] [输入的密码]
      *@return  [加密后的密码]
@@ -323,6 +342,31 @@ public class UserController {
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("registerUserInfo(User) - end"); //$NON-NLS-1$
+		}
+		return result;
+	}
+	
+	/**
+     *@param  [User,Model,HttpServletRequest] [当前登录驻点员,绑定属性值,获取Session会话]
+     *@return  [返回需要跳转的页面名称]
+     *@description [菜单授权]
+     */
+	@RequestMapping(params="method=getMenuList") 
+	public String getMenuList(RoleVO role,Model model,HttpServletRequest request){
+		if (logger.isDebugEnabled()) {
+			logger.debug("getMenuList(RoleVO) - start"); //$NON-NLS-1$
+		}
+		String result="AuthorizeMenu";
+		List<RoleVO> roleList=new ArrayList<RoleVO>();
+		try{
+			 roleList=asms.getRoleList(role);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("roleList", roleList);
+		if (logger.isDebugEnabled()) {
+			logger.debug("getMenuList(User) - end"); //$NON-NLS-1$
 		}
 		return result;
 	}

@@ -32,14 +32,18 @@ public class AdvertiserController {
 	}
 	
 	@RequestMapping(params="method=getAdvertiserList")
-	public String getAdvertiserList(AdvertiserVO advertiser, Model model,PageUtil pUtil) {
+	public String getAdvertiserList(String isflag,AdvertiserVO advertiser, Model model,PageUtil pUtil) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getAdvertiserList(AdvertiserVO) - start"); //$NON-NLS-1$
 		}
-		
+		String result="ad/AdList";
 		try {
-			advertiser.setVerifystatus(20);
-			advertiser.setStatus(20);
+			if(isflag!=null && !"".equals(isflag)){
+				result="ad/AdListUpdateAll";
+			}else{
+				advertiser.setVerifystatus(20);
+				advertiser.setStatus(20);
+			}
 			
 			int totalQty = service.getAdvertiserList(advertiser, null).size();
 			
@@ -56,6 +60,7 @@ public class AdvertiserController {
 			List<DictionaryVO> cooperList = DictionaryMap.getDicListByType("coopertype");
 			List<DictionaryVO> priceList = DictionaryMap.getDicListByType("pricesize");
 			List<DictionaryVO> orderList = DictionaryMap.getDicListByType("ordertype");
+			List<DictionaryVO> wayList = DictionaryMap.getDicListByType("verifyWay");
 			
 			model.addAttribute("platList",platList);
 			model.addAttribute("columnList",columnList);
@@ -64,6 +69,7 @@ public class AdvertiserController {
 			model.addAttribute("cooperList",cooperList);
 			model.addAttribute("priceList",priceList);
 			model.addAttribute("orderList",orderList);
+			model.addAttribute("wayList",wayList);
 			
 			model.addAttribute("pageList",pageList);
 			model.addAttribute("searchInfo",advertiser);
@@ -75,7 +81,7 @@ public class AdvertiserController {
 		if (logger.isDebugEnabled()) {
 			logger.debug("getAdvertiserList(AdvertiserVO) - end"); //$NON-NLS-1$
 		}
-		return "ad/AdList";
+		return result;
 	}
 	
 	@RequestMapping(params="method=getVerifyAdList")
@@ -235,5 +241,23 @@ public class AdvertiserController {
 			logger.debug("getAdInfo(AdvertiserVO) - start"); //$NON-NLS-1$
 		}
 		return "ad/AdEdit";
+	}
+	
+	@RequestMapping(params="method=toUpdateStatus")
+	public String toUpdateStatus(AdvertiserVO advertiser,String ids) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("toUpdateStatus(AdvertiserVO) - start"); //$NON-NLS-1$
+		}
+		try {
+			service.updateBatchAdvertiser(advertiser,ids);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("occur error when save advertiser:"+e);
+		}
+		if (logger.isDebugEnabled()) {
+			logger.debug("toUpdateStatus(AdvertiserVO) - end"); //$NON-NLS-1$
+		}
+		
+		return "redirect:advertiser.do?method=getAdvertiserList&isflag=Y";
 	}
 }

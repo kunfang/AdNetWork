@@ -12,4 +12,5 @@ public interface ChannelService {
 	public void updateChannel(ChannelVO channel) throws Exception;
 	public void deleteChannel(ChannelVO channel) throws Exception;
 	public ChannelVO getChannelByID(ChannelVO channel) throws Exception;
+	public void updateBatchChannel(ChannelVO channel,String ids) throws Exception;
 }

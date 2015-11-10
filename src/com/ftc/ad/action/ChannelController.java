@@ -58,10 +58,12 @@ public class ChannelController {
 		}
 		String result="channel/ChannelList";
 		try {
+			
 			if(isflag==null || "".equals(isflag)){
 				channel.setStatus(20);
 				channel.setVerifystatus(20);
 			}else{
+				channel.setVerifystatus(10);
 				result="channel/VerifyChannelListUpdateAll";
 			}
 			

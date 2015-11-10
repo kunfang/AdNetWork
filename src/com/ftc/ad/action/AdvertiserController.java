@@ -38,7 +38,9 @@ public class AdvertiserController {
 		}
 		String result="ad/AdList";
 		try {
+			
 			if(isflag!=null && !"".equals(isflag)){
+				advertiser.setVerifystatus(10);
 				result="ad/AdListUpdateAll";
 			}else{
 				advertiser.setVerifystatus(20);
@@ -199,12 +201,14 @@ public class AdvertiserController {
 		List<DictionaryVO> balanceList = DictionaryMap.getDicListByType("balancetype");
 		List<DictionaryVO> viewList = DictionaryMap.getDicListByType("viewtype");
 		List<DictionaryVO> cooperList = DictionaryMap.getDicListByType("coopertype");
+		List<DictionaryVO> prodWay = DictionaryMap.getDicListByType("verifyWay");
 		
 		model.addAttribute("platList",platList);
 		model.addAttribute("columnList",columnList);
 		model.addAttribute("balanceList",balanceList);
 		model.addAttribute("viewList",viewList);
 		model.addAttribute("cooperList",cooperList);
+		model.addAttribute("prodWayList",prodWay);
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("createAd() - start"); //$NON-NLS-1$
@@ -225,12 +229,14 @@ public class AdvertiserController {
 			List<DictionaryVO> balanceList = DictionaryMap.getDicListByType("balancetype");
 			List<DictionaryVO> viewList = DictionaryMap.getDicListByType("viewtype");
 			List<DictionaryVO> cooperList = DictionaryMap.getDicListByType("coopertype");
+			List<DictionaryVO> prodWay = DictionaryMap.getDicListByType("verifyWay");
 			
 			model.addAttribute("platList",platList);
 			model.addAttribute("columnList",columnList);
 			model.addAttribute("balanceList",balanceList);
 			model.addAttribute("viewList",viewList);
 			model.addAttribute("cooperList",cooperList);
+			model.addAttribute("prodWayList",prodWay);
 			
 			model.addAttribute("adInfo", info);
 		} catch (Exception e) {

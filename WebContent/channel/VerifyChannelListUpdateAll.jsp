@@ -86,6 +86,7 @@
 				<tr>
 				    <td nowrap style="text-align: center;">
 					   <input type="checkbox" name="fid" id="fid${status.index}" value="${channelList.channelID}" onclick="checkThis(this)" />
+					   <input type="hidden" name="verifys" id="verifystas${status.index}" value="${channelList.verifystatus}"/><!-- 审批状态 -->
 					</td>
 					<td>
                         <%=channeltypeName %>
@@ -103,9 +104,9 @@
 			</table>
 			<%@ include file="/common/pageLocation.jsp" %>
 			<div align="center">
-				<input type="button" class="divCss"  value="待审核" onclick="toUpdate('10')"/> &nbsp;&nbsp;
-				<input type="button" class="divCss"  value="已审核" onclick="toUpdate('20')"/> &nbsp;&nbsp;
-				<input type="button" class="divCss"  value="拒绝" onclick="toUpdate('50')"/> &nbsp;&nbsp;
+				<!--<input type="button" class="divCss"  value="待审核" onclick="toUpdate('10')"/> &nbsp;&nbsp; -->
+				<input type="button" class="divCss"  value="审核通过" onclick="toUpdate('20')"/> &nbsp;&nbsp;
+				<input type="button" class="divCss"  value="审核拒绝" onclick="toUpdate('50')"/> &nbsp;&nbsp;
 				<input type="button" class="divCss"  value="上线" onclick="toUpdate('30')"/> &nbsp;&nbsp;
 				<input type="button" class="divCss"  value="下线" onclick="toUpdate('40')"/>
 		    </div>
@@ -181,7 +182,12 @@
 		 var ids='';
 		 var status;
 		 for ( var i = 0; i < sel.length; i++) {
-			 if(sel[i].checked){
+			 var vsta=document.getElementById("verifystas"+i).value; //审批状态
+			 if(sel[i].checked && vsta=='10' && ins =='30'){
+				 alert("待审批状态的产品不能直接变为上线状态");
+				 return ;
+			 }
+			 else if(sel[i].checked){
 				 ids+=document.getElementById("fid"+i).value+",";
 			 }
 		 }
@@ -190,14 +196,14 @@
 			 return ;
 		 }
 		 if(ids.length>1){
-			 if(ins=="10"){
-			    document.myform.verifystatus.value="10";
-			 }
-			 else if(ins=="20"){
+			 //if(ins=="10"){
+			 //   document.myform.verifystatus.value="10";
+			 //}
+			 if(ins=="20"){
 				 document.myform.verifystatus.value="20"; 
 			 }
 			 else if(ins=="50"){
-				 document.myform.verifystatus.value="90"; 
+				 document.myform.verifystatus.value="99"; 
 			 }
 			 else if(ins=="30"){
 				 document.myform.status.value="20";

@@ -104,6 +104,23 @@
 			                </dd>
 			            </dl>
 			            <dl>
+			                <dt>* 投放形式：</dt>
+			                <dd>
+			                    <c1:forEach items="${prodWayList}" var="prodWayList">
+									<label class="radio-inline">
+											<c1:choose>
+												<c1:when test="${prodWayList.value==adInfo.prodWay}">
+													<input type="radio" name="prodWay" value="${prodWayList.value}" checked> ${prodWayList.valuename}
+												</c1:when>
+												<c1:otherwise>
+													<input type="radio" name="prodWay" value="${prodWayList.value}"> ${prodWayList.valuename}
+												</c1:otherwise>
+											</c1:choose>
+									</label>
+								</c1:forEach>
+			                </dd>
+			            </dl>
+			            <dl>
 			                <dt>* QQ：</dt>
 			                <dd>
 			                    <input type="text" class="leshu_a_input" style=" width:200px" id="qq" name="qq" placeholder="QQ" value="${adInfo.qq}">
@@ -205,6 +222,9 @@
 				viewType : {
 					required : true
 				},
+				prodWay : {
+					required : true
+				},
 				qq : {
 					required : true
 				},
@@ -237,6 +257,9 @@
 				},
 				viewType : {
 					required : "请选择数据查看方式"
+				},
+				prodWay : {
+					required : "请选择投放形式"
 				},
 				qq : {
 					required : "请输入QQ号"

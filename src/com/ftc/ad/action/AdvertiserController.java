@@ -40,7 +40,6 @@ public class AdvertiserController {
 		try {
 			
 			if(isflag!=null && !"".equals(isflag)){
-				advertiser.setVerifystatus(10);
 				result="ad/AdListUpdateAll";
 			}else{
 				advertiser.setVerifystatus(20);
@@ -94,8 +93,15 @@ public class AdvertiserController {
 		
 		try {
 			advertiser.setVerifystatus(10);
+			int totalQty = service.getAdvertiserList(advertiser, null).size();
 			List<AdvertiserVO> advertiserList = service.getAdvertiserList(advertiser, pUtil);
 			model.addAttribute("advertiserList", advertiserList);
+			
+			PageUtil pU = new PageUtil();
+			HashMap<String, Integer> pageList = pU.getPageList( pUtil.getCurPage(), totalQty,pUtil.getPageSize());
+			System.out.println("server pageList:" + pageList);
+			model.addAttribute("pageList",pageList);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("occur error when get advertiser list:"+e);
@@ -250,10 +256,11 @@ public class AdvertiserController {
 	}
 	
 	@RequestMapping(params="method=toUpdateStatus")
-	public String toUpdateStatus(AdvertiserVO advertiser,String ids) {
+	public String toUpdateStatus(AdvertiserVO advertiser,String ids,String pageStr) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("toUpdateStatus(AdvertiserVO) - start"); //$NON-NLS-1$
 		}
+		String result="";
 		try {
 			service.updateBatchAdvertiser(advertiser,ids);
 		} catch (Exception e) {
@@ -263,7 +270,11 @@ public class AdvertiserController {
 		if (logger.isDebugEnabled()) {
 			logger.debug("toUpdateStatus(AdvertiserVO) - end"); //$NON-NLS-1$
 		}
-		
-		return "redirect:advertiser.do?method=getAdvertiserList&isflag=Y";
+		if(pageStr!=null && "Y".equals(pageStr)){
+			result="redirect:advertiser.do?method=getVerifyAdList";
+		}else{
+			result="redirect:advertiser.do?method=getAdvertiserList&isflag=Y";
+		}
+		return result;
 	}
 }

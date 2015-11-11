@@ -5,6 +5,7 @@
 <div class="pagenav">
 </div>
 <script type="text/javascript">
+
 $(function(){
 	var showNums = 11;
 	
@@ -22,6 +23,7 @@ $(function(){
 	} */
 	var beforeNum = curPage - (showNums-1)/2;
 	var endNum = curPage + (showNums-1)/2;
+
 	if (beforeNum > 0 && endNum < totalPage) {
 		for (var i=beforeNum;i<=endNum;i++) {
 			if (i==curPage) {
@@ -31,7 +33,7 @@ $(function(){
 			}
 			tempNavHtml = tempNavHtml + "<a class=\""+className+"\" onclick=\"ChangePage(this, "+i+")\">"+i+"</a>";
 		}
-	} else if (beforeNum <= 0 && endNum > totalPage) {
+	} else if (beforeNum <= 0 && endNum >= totalPage) {
 		for (var i=1;i<=totalPage;i++) {
 			if (i==curPage) {
 				className="current";

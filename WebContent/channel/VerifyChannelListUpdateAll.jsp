@@ -22,7 +22,7 @@
 		<%@ include file="/menu.jsp" %>
 		<div class="xc_rightbox">
 			<ul>
-				<b>您当前的位置 - 渠道批量审核列表</b>
+				<b>您当前的位置 - 所有渠道列表</b>
 			</ul>
 			<div class="leshu_table">
 			   <div class="onebox onebox1">
@@ -214,6 +214,7 @@
 		 }
 		 document.myform.ids.value=ids.substring(0,ids.length-1);
 		 document.myform.method.value="updateBatchChannel";
+		 document.myform.pageStr.value="Y";
 		 document.myform.submit();
 	 }
 	

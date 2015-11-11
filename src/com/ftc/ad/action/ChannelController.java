@@ -63,7 +63,6 @@ public class ChannelController {
 				channel.setStatus(20);
 				channel.setVerifystatus(20);
 			}else{
-				channel.setVerifystatus(10);
 				result="channel/VerifyChannelListUpdateAll";
 			}
 			
@@ -106,9 +105,13 @@ public class ChannelController {
 		
 		try {
 			channel.setVerifystatus(10);
-			
+			int totalQty = service.getChannelList(channel, null).size();
 			List<ChannelVO> channelList = service.getChannelList(channel, pUtil);
 			model.addAttribute("channelList",channelList);
+			
+			PageUtil pU = new PageUtil();
+			HashMap<String, Integer> pageList = pU.getPageList( pUtil.getCurPage(), totalQty,pUtil.getPageSize());
+			model.addAttribute("pageList",pageList);
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("occur error when get channel list:"+e);
@@ -231,10 +234,11 @@ public class ChannelController {
 	}
 	
 	@RequestMapping(params="method=updateBatchChannel")
-	public String updateBatchChannel(ChannelVO channel,String ids){
+	public String updateBatchChannel(ChannelVO channel,String ids,String pageStr){
 		if (logger.isDebugEnabled()) {
 			logger.debug("updateBatchChannel(ChannelVO,ids) - start"); //$NON-NLS-1$
 		}
+		String result="";
 		try {
 			service.updateBatchChannel(channel,ids);
 		} catch (Exception e) {
@@ -244,7 +248,12 @@ public class ChannelController {
 		if (logger.isDebugEnabled()) {
 			logger.debug("updateBatchChannel(ChannelVO,ids) - start"); //$NON-NLS-1$
 		}
+		if(pageStr!=null && "Y".equals(pageStr)){
+			result="redirect:channel.do?method=getVerifyChannelList";
+		}else{
+			result="redirect:channel.do?method=getChannelList&isflag=Y";
+		}
 		
-		return "redirect:channel.do?method=getChannelList&isflag=Y";
+		return result;
 	}
 }

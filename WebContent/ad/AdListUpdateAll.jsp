@@ -28,7 +28,7 @@
 		
 		<div class="xc_rightbox" >
 			<ul>
-				<b>您当前的位置 - 产品批量审核列表</b>
+				<b>您当前的位置 - 所有产品列表</b>
 			</ul>
 			<div class="leshu_table" style="overflow-x:auto;overflow-y:hidden;">
 			<div class="onebox onebox1">

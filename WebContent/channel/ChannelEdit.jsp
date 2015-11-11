@@ -83,43 +83,43 @@
 			            <dl>
 			                <dt>手机：</dt>
 			                <dd>
-								<input name="mobilePhone" id="mobilePhone" type="text" value="${channelInfo.mobilePhone}" class="leshu_a_input" style=" width:200px" placeholder="手机">
+								<input name="mobilePhone" maxlength="20" id="mobilePhone" type="text" value="${channelInfo.mobilePhone}" class="leshu_a_input" style=" width:200px" placeholder="手机">
 			                </dd>
 			           </dl>
 			           <dl>
 			                <dt>微信：</dt>
 			                <dd>
-								<input name="wechat" id="wechat" type="text" value="${channelInfo.wechat}" class="leshu_a_input" style=" width:200px" placeholder="微信">
+								<input name="wechat"  maxlength="30" id="wechat" type="text" value="${channelInfo.wechat}" class="leshu_a_input" style=" width:200px" placeholder="微信">
 			                </dd>
 			           </dl>
 			           <dl>
 			                <dt>* QQ：</dt>
 			                <dd>
-								<input name="qq" id="qq" type="text" value="${channelInfo.qq}" class="leshu_a_input" style=" width:200px" placeholder="QQ">
+								<input name="qq" maxlength="30" id="qq" type="text" value="${channelInfo.qq}" class="leshu_a_input" style=" width:200px" placeholder="QQ">
 			                </dd>
 			           </dl>
 			           <dl>
 			                <dt>网站地址：</dt>
 			                <dd>
-								<input name="website" id="website" type="text" value="${channelInfo.website}" class="leshu_a_input" style=" width:200px" placeholder="网站地址">
+								<input name="website" maxlength="200" id="website" type="text" value="${channelInfo.website}" class="leshu_a_input" style=" width:200px" placeholder="网站地址">
 			                </dd>
 			           </dl>
 			           <dl>
 			                <dt>公司名称：</dt>
 			                <dd>
-								<input name="orgName" id="orgName" type="text" value="${channelInfo.orgName}" class="leshu_a_input" style=" width:200px" placeholder="公司名称">
+								<input name="orgName" maxlength="30" id="orgName" type="text" value="${channelInfo.orgName}" class="leshu_a_input" style=" width:200px" placeholder="公司名称">
 			                </dd>
 			           </dl>
 			           <dl>
 			                <dt>座机：</dt>
 			                <dd>
-								<input name="telephone" id="telephone" type="text" value="${channelInfo.telephone}" class="leshu_a_input" style=" width:200px" placeholder="座机">
+								<input name="telephone" maxlength="20" id="telephone" type="text" value="${channelInfo.telephone}" class="leshu_a_input" style=" width:200px" placeholder="座机">
 			                </dd>
 			           </dl>
 			           <dl>
 			                <dt>* 详情：</dt>
 			                <dd>
-								<input name="comments" id="comments" type="text" value="${channelInfo.comments}" class="leshu_a_input" style=" width:400px" placeholder="详情">
+								<input name="comments" maxlength="150" id="comments" type="text" value="${channelInfo.comments}" class="leshu_a_input" style=" width:400px" placeholder="详情">
 			                </dd>
 			           </dl>
 			           <div class="tijiao">

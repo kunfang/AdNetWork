@@ -49,7 +49,7 @@
 			            <dl>
 			                <dt>* 产品名称：</dt>
 			                <dd>
-			                    <input type="text" class="leshu_a_input" style=" width:200px" id="prodName" name="prodName" placeholder="产品名称" value="${adInfo.prodName}">
+			                    <input type="text" maxlength="20" class="leshu_a_input" style=" width:200px" id="prodName" name="prodName" placeholder="产品名称" value="${adInfo.prodName}">
 			                </dd>
 			            </dl>
 			            <dl>
@@ -123,19 +123,19 @@
 			            <dl>
 			                <dt>* QQ：</dt>
 			                <dd>
-			                    <input type="text" class="leshu_a_input" style=" width:200px" id="qq" name="qq" placeholder="QQ" value="${adInfo.qq}">
+			                    <input type="text" maxlength="30" class="leshu_a_input" style=" width:200px" id="qq" name="qq" placeholder="QQ" value="${adInfo.qq}">
 			                </dd>
 			            </dl>
 			            <dl>
 			                <dt>手机：</dt>
 			                <dd>
-			                    <input type="text" class="leshu_a_input" style=" width:200px" id="mobilePhone" name="mobilePhone" placeholder="手机" value="${adInfo.mobilePhone}">
+			                    <input type="text" maxlength="20" class="leshu_a_input" style=" width:200px" id="mobilePhone" name="mobilePhone" placeholder="手机" value="${adInfo.mobilePhone}">
 			                </dd>
 			            </dl>
 			            <dl>
 			                <dt>微信：</dt>
 			                <dd>
-			                    <input type="text" class="leshu_a_input" style=" width:200px" id="wechat" name="wechat" placeholder="微信" value="${adInfo.wechat}">
+			                    <input type="text" maxlength="30" class="leshu_a_input" style=" width:200px" id="wechat" name="wechat" placeholder="微信" value="${adInfo.wechat}">
 			                </dd>
 			            </dl>
 			            <dl>
@@ -158,31 +158,31 @@
 			            <dl>
 			                <dt>* 价格 /元：</dt>
 			                <dd>
-			                    <input type="text" class="leshu_a_input" style=" width:200px" id="price" name="price" placeholder="价格 /元" value="${adInfo.price}">
+			                    <input type="text" maxlength="10" class="leshu_a_input" style=" width:200px" id="price" name="price" placeholder="价格 /元" value="${adInfo.price}">
 			                </dd>
 			            </dl>
 			            <dl>
 			                <dt>公司名称：</dt>
 			                <dd>
-			                    <input type="text" class="leshu_a_input" style=" width:200px" id="orgName" name="orgName" placeholder="公司名称" value="${adInfo.orgName}">
+			                    <input type="text" maxlength="30" class="leshu_a_input" style=" width:200px" id="orgName" name="orgName" placeholder="公司名称" value="${adInfo.orgName}">
 			                </dd>
 			            </dl>
 			            <dl>
 			                <dt>网址 ：</dt>
 			                <dd>
-			                    <input type="text" class="leshu_a_input" style=" width:200px" id="website" name="website" placeholder="网址 " value="${adInfo.website}">
+			                    <input type="text" maxlength="200" class="leshu_a_input" style=" width:200px" id="website" name="website" placeholder="网址 " value="${adInfo.website}">
 			                </dd>
 			            </dl>
 			            <dl>
 			                <dt>座机：</dt>
 			                <dd>
-			                    <input type="text" class="leshu_a_input" style=" width:200px" id="telephone" name="telephone" placeholder="座机" value="${adInfo.telephone}">
+			                    <input type="text" maxlength="20" class="leshu_a_input" style=" width:200px" id="telephone" name="telephone" placeholder="座机" value="${adInfo.telephone}">
 			                </dd>
 			            </dl>
 			            <dl>
 			                <dt>* 详情：</dt>
 			                <dd>
-			                    <input type="text" class="leshu_a_input" style=" width:400px" id="comments" name="comments" placeholder="详情" value="${adInfo.comments}">
+			                    <input type="text" maxlength="150" class="leshu_a_input" style=" width:400px" id="comments" name="comments" placeholder="详情" value="${adInfo.comments}">
 			                </dd>
 			            </dl>
 			            <div class="tijiao">

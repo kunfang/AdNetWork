@@ -317,8 +317,8 @@
 	          			  String wayName = DictionaryMap.getDicDesc("verifyWay", ad.getProdWay()); //投放形式
 				       %>
 					    <tr>
-					        <td align="left"><font style="font-size: 18px;color: #959595;">[<%=columnTypeName %>]<%=platformTypeName %></font></td>        
-					        <td align="left"><a href="#" target="_self"><font style="font-size: 16px;color: #000;"><span>${advertiserList.prodName}</span></font></a></td>
+					        <td align="left"><font style="color: #959595;">[<%=columnTypeName %>]<%=platformTypeName %></font></td>        
+					        <td align="left"><font style="color: #959595;">${advertiserList.prodName}</font></td>
 					        <td align="left"><font style="color: #959595;"><fmt:formatDate value="${advertiserList.datelastupdated}" pattern="yyyy-MM-dd"/></font></td>
 					        <td align="left"><font style="color: #959595;"><%=balanceTypeName %>（<%=viewTypeName %>）</font></td>
 					        <td align="left"><font style="color: #959595;"><%=wayName %></font></td>

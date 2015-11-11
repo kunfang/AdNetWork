@@ -277,6 +277,7 @@ body{background:#fff;position:relative;}
 	display: inline-block;
 	background-color: #eee;
 	margin: 0 1px;
+	cursor: pointer;
 }
 .pagenav .current {
 	background-color: #01adef;

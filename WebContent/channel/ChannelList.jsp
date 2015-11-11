@@ -195,8 +195,8 @@
 	          			String channelsizeName = DictionaryMap.getDicDesc("channelsize", channel.getChannelsize());
 	          		%>
 	          		<tr>
-					        <td align="left"><font style="font-size: 18px;color: #959595;">[<%=channeltypeName %>]<%=platformTypeName %></font></td>        
-					        <td align="left"><a href="#" target="_self"><font style="font-size: 16px;color: #000;"><span>${channelList.comments}</span></font></a></td>
+					        <td align="left"><font style="color: #959595;">[<%=channeltypeName %>]<%=platformTypeName %></font></td>        
+					        <td align="left"><font style="color: #959595;">${channelList.comments}</font></td>
 					        <td align="left"><font style="color: #959595;"><fmt:formatDate value="${channelList.datelastupdated}" pattern="yyyy-MM-dd"/></font></td>
 					        <td align="left"><font style="color: #959595;">${channelList.qq}</font></td>
 					        <td align="left"><font style="color: #f90;font-weight: bold;font-size: 20px;"><%=channelsizeName %></font></td>

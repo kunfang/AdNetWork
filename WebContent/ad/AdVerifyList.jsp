@@ -35,8 +35,8 @@
 					<td width="8%">结算方式</td>
 					<td width="8%">数据查看</td>
 					<td width="10%">QQ</td>
-					<td width="20%">详情</td>
-					<td width="10%">操作</td>
+					<td width="17%">详情</td>
+					<td width="13%">操作</td>
 				</tr>
 				<c1:forEach items="${advertiserList}" var="advertiserList" varStatus="status">
 				<%
@@ -68,8 +68,8 @@
 					<td>${advertiserList.qq}</td>
 					<td width="10%">${advertiserList.comments}</td>
 					<td>
-						<input type="button" class="leshu_a_w2" value="审核通过" onclick="verifyAd(${advertiserList.advertiserID},20)">
-						<input type="button" class="leshu_a_w2" value="审核拒绝" onclick="verifyAd(${advertiserList.advertiserID},99)">
+						<input type="button" class="button primary" value="审核通过" onclick="verifyAd(${advertiserList.advertiserID},20)">
+						<input type="button" class="button danger" value="审核拒绝" onclick="verifyAd(${advertiserList.advertiserID},99)">
 					</td>
 				</tr>
 				</c1:forEach>
@@ -77,9 +77,13 @@
 			</table>
 			<%@ include file="/common/pageLocation.jsp" %>
 			<div align="center">
-				<!--<input type="button" class="divCss"  value="待审核" onclick="toUpdate('10')"/> &nbsp;&nbsp;  -->
-				<input type="button" class="divCss"  value="审核通过" onclick="toUpdate('20')"/> &nbsp;&nbsp;
-				<input type="button" class="divCss"  value="审核拒绝" onclick="toUpdate('50')"/> &nbsp;&nbsp;
+				<!--<input type="button" class="divCss"  value="待审核" onclick="toUpdate('10')"/> &nbsp;&nbsp;  
+				<input type="button" class="button primary"  value="审核通过" onclick="toUpdate('20')"/> &nbsp;&nbsp;
+				<input type="button" class="button danger"  value="审核拒绝" onclick="toUpdate('50')"/> &nbsp;&nbsp;-->
+				<ul class="button-group">
+					<li><a class="button primary pill" onclick="toUpdate('20')">审核通过</a></li>
+					<li><a class="button danger pill" onclick="toUpdate('50')">审核拒绝</a></li>
+				</ul>
 		    </div>
 			</div>
 		</div>

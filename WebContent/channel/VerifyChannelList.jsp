@@ -33,9 +33,9 @@
 					<td width="13%">发布时间</td>
 					<td width="6%">终端</td>
 					<td width="7%">量级</td>
-					<td width="10%">QQ</td>
-					<td width="20%">详情</td>
-					<td width="10%">操作</td>
+					<td width="8%">QQ</td>
+					<td width="17%">详情</td>
+					<td width="15%">操作</td>
 				</tr>
 				<c1:forEach items="${channelList}" var="channelList" varStatus="status">
 				<%
@@ -60,8 +60,8 @@
 					<td>${channelList.qq}</td>
 					<td>${channelList.comments}</td>
 					<td>
-						<input type="button" class="leshu_a_w2" value="审核通过" onclick="verifyChannel(${channelList.channelID},20)">
-						<input type="button" class="leshu_a_w2" value="审核拒绝" onclick="verifyChannel(${channelList.channelID},99)">
+						<input type="button" class="button primary" value="审核通过" onclick="verifyChannel(${channelList.channelID},20)">
+						<input type="button" class="button danger" value="审核拒绝" onclick="verifyChannel(${channelList.channelID},99)">
 					</td>
 				</tr>
 				</c1:forEach>
@@ -69,9 +69,13 @@
 			</table>
 			<%@ include file="/common/pageLocation.jsp" %>
 			<div align="center">
-				<!--<input type="button" class="divCss"  value="待审核" onclick="toUpdate('10')"/> &nbsp;&nbsp;  -->
-				<input type="button" class="divCss"  value="审核通过" onclick="toUpdate('20')"/> &nbsp;&nbsp;
-				<input type="button" class="divCss"  value="审核拒绝" onclick="toUpdate('50')"/> &nbsp;&nbsp;
+				<!--<input type="button" class="divCss"  value="待审核" onclick="toUpdate('10')"/> &nbsp;&nbsp;  
+				<input type="button" class="button primary"  value="审核通过" onclick="toUpdate('20')"/> &nbsp;&nbsp;
+				<input type="button" class="button danger"  value="审核拒绝" onclick="toUpdate('50')"/> &nbsp;&nbsp;-->
+				<ul class="button-group">
+					<li><a class="button primary pill" onclick="toUpdate('20')">审核通过</a></li>
+					<li><a class="button danger pill" onclick="toUpdate('50')">审核拒绝</a></li>
+				</ul>
 		    </div>
 			</div>
 		</div>

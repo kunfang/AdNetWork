@@ -50,7 +50,7 @@
 		                    </form:select>
 		                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 		                    <span>详情：</span><input type="text" class="leshu_a_input" style=" width:200px" id="comments" name="comments" placeholder="详情" value="${searchInfo.comments}"/>
-		                    <span>&nbsp;<input type="button" style="width: 40px;background: #5599ff;" value="查询" onclick="toSearch()">
+		                    <span>&nbsp;<input type="button" class="button pill primary" value="查询" onclick="toSearch()">
 		                    </span>
 		                </dd>
 		            </dl>
@@ -104,11 +104,17 @@
 			</table>
 			<%@ include file="/common/pageLocation.jsp" %>
 			<div align="center">
-				<!--<input type="button" class="divCss"  value="待审核" onclick="toUpdate('10')"/> &nbsp;&nbsp; -->
-				<input type="button" class="divCss"  value="审核通过" onclick="toUpdate('20')"/> &nbsp;&nbsp;
-				<input type="button" class="divCss"  value="审核拒绝" onclick="toUpdate('50')"/> &nbsp;&nbsp;
-				<input type="button" class="divCss"  value="上线" onclick="toUpdate('30')"/> &nbsp;&nbsp;
-				<input type="button" class="divCss"  value="下线" onclick="toUpdate('40')"/>
+				<!--<input type="button" class="divCss"  value="待审核" onclick="toUpdate('10')"/> &nbsp;&nbsp;
+				<input type="button" class="button primary"  value="审核通过" onclick="toUpdate('20')"/> &nbsp;&nbsp;
+				<input type="button" class="button danger"  value="审核拒绝" onclick="toUpdate('50')"/> &nbsp;&nbsp;
+				<input type="button" class="button primary"  value="上线" onclick="toUpdate('30')"/> &nbsp;&nbsp;
+				<input type="button" class="button danger"  value="下线" onclick="toUpdate('40')"/> -->
+				<ul class="button-group">
+					<li><a class="button primary pill" onclick="toUpdate('20')">审核通过</a></li>
+					<li><a class="button primary pill" onclick="toUpdate('30')">上线</a></li>
+					<li><a class="button danger pill" onclick="toUpdate('50')">审核拒绝</a></li>
+					<li><a class="button danger pill" onclick="toUpdate('40')">下线</a></li>
+				</ul>
 		    </div>
 			</div>
 		</div>

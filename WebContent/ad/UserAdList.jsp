@@ -46,14 +46,14 @@
 					<td><%=verifystatusName %></td>
 					<td><%=statusName %></td>
 					<td>
-						<input type="button" class="leshu_a_w2" value="删除" onclick="deleteAd(${advertiserList.advertiserID})">
+						<input type="button" class="button danger" value="删除" onclick="deleteAd(${advertiserList.advertiserID})">
 						<c1:if test="${advertiserList.verifystatus==20}">
 							<c1:choose>
 								<c1:when test="${advertiserList.status==10}">
-									<input type="button" class="leshu_a_w2" value="上线" onclick="updateAd(${advertiserList.advertiserID},20)">
+									<input type="button" class="button primary" value="上线" onclick="updateAd(${advertiserList.advertiserID},20)">
 								</c1:when>
 								<c1:otherwise>
-									<input type="button" class="leshu_a_w2" value="下线" onclick="updateAd(${advertiserList.advertiserID},10)">
+									<input type="button" class="button danger" value="下线" onclick="updateAd(${advertiserList.advertiserID},10)">
 								</c1:otherwise>
 							</c1:choose>
 						</c1:if>

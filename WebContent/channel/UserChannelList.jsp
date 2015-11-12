@@ -43,19 +43,19 @@
                         %>
                         <tr>
                         	<td>
-                        		<a onclick="getChannelInfo(${channelList.channelID})">${channelList.comments}</a>
+                        		<a onclick="getChannelInfo(${channelList.channelID})">&nbsp;${channelList.comments}</a>
 							</td>
 							<td><%=verifystatusName %></td>
 							<td><%=statusName %></td>
 							<td>
-								<input type="button" class="leshu_a_w2" value="删除" onclick="deleteChannel(${channelList.channelID})">
+								<input type="button" class="button danger" value="删除" onclick="deleteChannel(${channelList.channelID})">
 								<c1:if test="${channelList.verifystatus==20}">
 									<c1:choose>
 										<c1:when test="${channelList.status==10}">
-											<input type="button" class="leshu_a_w2" value="上线" onclick="updateChannel(${channelList.channelID},20)">
+											<input type="button" class="button primary" value="上线" onclick="updateChannel(${channelList.channelID},20)">
 										</c1:when>
 										<c1:otherwise>
-											<input type="button" class="leshu_a_w2" value="下线" onclick="updateChannel(${channelList.channelID},10)">
+											<input type="button" class="button danger" value="下线" onclick="updateChannel(${channelList.channelID},10)">
 										</c1:otherwise>
 									</c1:choose>
 								</c1:if>

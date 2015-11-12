@@ -31,35 +31,45 @@
 				<b>您当前的位置 - 所有产品列表</b>
 			</ul>
 			<div class="leshu_table" style="overflow-x:auto;overflow-y:hidden;">
-			<div class="onebox onebox1">
-			<dl>
-                <dt>系统：</dt>
-                <dd>
-                    <form:select path="platformType">
-                       <form:option value="" label="-------"></form:option>
-                       <form:options items="${platList}" itemLabel="valuename" itemValue="value"/>
-                    </form:select>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span>结算方式：</span>
-                    <form:select path="balanceType">
-                       <form:option value="" label="-------"></form:option>
-                       <form:options items="${balanceList}" itemLabel="valuename" itemValue="value"/>
-                    </form:select>
-                </dd>
-            </dl>
-			<dl>
-                <dt>产品名称：</dt>
-                <dd>
-                    <input type="text" class="leshu_a_input" style=" width:200px" id="prodName" name="prodName" placeholder="产品名称" value="${searchInfo.prodName}">&nbsp;&nbsp;
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span>详情：</span><input type="text" class="leshu_a_input" style=" width:200px" id="comments" name="comments" placeholder="详情" value="${searchInfo.comments}">
-                    <span>&nbsp;<input type="button" style="width: 40px;background: #5599ff;" value="查询" onclick="toSearch()">
-                       <input type="button" style="width: 40px;background: #5599ff;" value="清除" onclick="toSearch()">
-                    </span>
-                </dd>
-            </dl>
-			</div>
-			
+			  <table style="width:80%; margin:0px auto; font-size:13px; padding-top:10px;border:solid 0px #add9c0;">
+				<tr style="border:solid 0px #add9c0;">
+					<td style="border:solid 0px #add9c0;width: 15%;text-align: right;">系统：</td>
+                    <td style="border:solid 0px #add9c0;width: 15%;text-align: left;">
+                    	<form:select path="platformType">
+	                       <form:option value="" label="-------"></form:option>
+	                       <form:options items="${platList}" itemLabel="valuename" itemValue="value"/>
+	                    </form:select>
+                    </td>
+                    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">结算方式：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<form:select path="balanceType">
+	                       <form:option value="" label="-------"></form:option>
+	                       <form:options items="${balanceList}" itemLabel="valuename" itemValue="value"/>
+	                    </form:select>
+                    </td>
+                    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">产品类别：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<form:select path="columnType">
+	                       <form:option value="" label="-------"></form:option>
+	                       <form:options items="${columnList}" itemLabel="valuename" itemValue="value"/>
+	                    </form:select>
+                    </td>	
+				</tr >
+				<tr style="border:solid 0px #add9c0;">
+					<td style="border:solid 0px #add9c0;width: 15%;text-align: right;">产品名称：</td>
+                    <td style="border:solid 0px #add9c0;width: 15%;text-align: left;">
+                    	<input type="text" class="leshu_a_input" style=" width:200px" id="prodName" name="prodName" placeholder="产品名称" value="${searchInfo.prodName}" />
+                    </td>
+                    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">详情：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<input type="text" class="leshu_a_input" style=" width:200px" id="comments" name="comments" placeholder="详情" value="${searchInfo.comments}" />
+                    </td>	
+                    <td style="border:solid 0px #add9c0;text-align: right;">
+                        <input type="button" style="width: 40px;background: #5599ff;" value="查询" onclick="toSearch()" />
+                    </td>
+				</tr >
+			</table>
+			<div style="width:1500px; margin:0px auto;">
 			<table width="1500px" border="0" cellspacing="0" cellpadding="0">
 			<tbody>
 				<tr class="title">
@@ -110,8 +120,9 @@
 				</c1:forEach>
 			</tbody>
 			</table>
-			<%@ include file="/common/pageLocation.jsp" %>
-					<div align="center">
+			</div>
+			   <%@ include file="/common/pageLocation.jsp" %>
+					<div align="center" >
 						<!--<input type="button" class="divCss"  value="待审核" onclick="toUpdate('10')"/> &nbsp;&nbsp;  -->
 						<input type="button" class="divCss"  value="审核通过" onclick="toUpdate('20')"/> &nbsp;&nbsp;
 						<input type="button" class="divCss"  value="审核拒绝" onclick="toUpdate('50')"/> &nbsp;&nbsp;

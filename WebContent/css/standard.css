@@ -269,7 +269,8 @@ body{background:#fff;position:relative;}
 .pagenav {
 	overflow: hidden;
 	text-align: center;
-	padding: 20px
+	padding: 20px;
+	width: 100%;
 }
 .pagenav a,.pagenav span, .pagenav .current, .pagenav .page-numbers {
 	padding: 4px 12px 3px;

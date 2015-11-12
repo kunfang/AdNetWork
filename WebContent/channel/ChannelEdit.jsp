@@ -153,14 +153,29 @@
 				channelsize : {
 					required : true
 				},
+				mobilePhone :{
+					maxlength: 20
+				},
+				wechat :{
+					maxlength: 30
+				},
 				qq : {
-					required : true
+					required : true,
+					maxlength: 30
 				},
 				comments : {
-					required : true
+					required : true,
+					maxlength: 150
+				},
+				orgName :{
+					maxlength: 30
+				},
+				telephone :{
+					maxlength: 20
 				},
 				website : {
-					url:true
+					url:true,
+				    maxlength: 200
 				}
 			},
 			messages:{
@@ -173,14 +188,29 @@
 				channelsize : {
 					required : "请选择渠道量级"
 				},
+				mobilePhone :{
+					maxlength: "最大长度不能超过20个字符"
+				},
+				wechat :{
+					maxlength: "最大长度不能超过30个字符"
+				},
 				qq : {
-					required : "请输入QQ号"
+					required : "请输入QQ号",
+					maxlength: "最大长度不能超过30个字符"
 				},
 				comments : {
-					required : "请输入产品详情"
+					required : "请输入产品详情",
+					maxlength: "最大长度不能超过150个字符"
+				},
+				orgName :{
+					maxlength: "最大长度不能超过30个字符"
+				},
+				telephone :{
+					maxlength: "最大长度不能超过20个字符"
 				},
 				website : {
-					url : "请输入正确的URL"
+					url : "请输入正确的URL",
+					maxlength: "最大长度不能超过200个字符"
 				}
 			},
 			errorPlacement: function(error, element) {

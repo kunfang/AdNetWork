@@ -211,7 +211,8 @@
 					required : true
 				},
 				prodName : {
-					required : true
+					required : true,
+					maxlength:20
 				},
 				platformType : {
 					required : true
@@ -226,20 +227,36 @@
 					required : true
 				},
 				qq : {
-					required : true
+					required : true,
+					maxlength: 30
+				},
+				mobilePhone:{
+					maxlength: 20
+				},
+				wechat :{
+					maxlength: 30
 				},
 				cooperationType : {
 					required : true
 				},
 				price : {
 					required : true,
-					number:true
+					number:true,
+					maxlength: 10
+				},
+				orgName:{
+					maxlength: 30
+				},
+				telephone:{
+					maxlength: 20
 				},
 				comments : {
-					required : true
+					required : true,
+					maxlength: 150
 				},
 				website : {
-					url:true
+					url:true,
+					maxlength: 200
 				}
 			},
 			messages:{
@@ -247,7 +264,8 @@
 					required :"请选择栏目"
 				},
 				prodName : {
-					required : "请输入产品名称"
+					required : "请输入产品名称",
+					maxlength: "最大长度不能超过20个字符"
 				},
 				platformType : {
 					required : "请选择产品平台"
@@ -262,20 +280,36 @@
 					required : "请选择投放形式"
 				},
 				qq : {
-					required : "请输入QQ号"
+					required : "请输入QQ号",
+					maxlength: "最大长度不能超过30个字符"
+				},
+				mobilePhone:{
+					maxlength: "最大长度不能超过20个字符"
+				},
+				wechat :{
+					maxlength: "最大长度不能超过30个字符"
 				},
 				cooperationType : {
 					required : "请选择合作方式"
 				},
 				price : {
 					required : "请输入价格",
-					number : "请输入正确的数字格式"
+					number : "请输入正确的数字格式",
+					maxlength: "最大长度不能超过10个字符"
+				},
+				orgName:{
+					maxlength: "最大长度不能超过30个字符"
+				},
+				telephone:{
+					maxlength: "最大长度不能超过20个字符"
 				},
 				comments : {
-					required : "请输入产品详情"
+					required : "请输入产品详情",
+					maxlength: "最大长度不能超过150个字符"
 				},
 				website : {
-					url : "请输入正确的URL"
+					url : "请输入正确的URL",
+			        maxlength: "最大长度不能超过200个字符"
 				}
 			},
 			errorPlacement: function(error, element) {

@@ -220,7 +220,6 @@
 		 }
 		 document.myform.ids.value=ids.substring(0,ids.length-1);
 		 document.myform.method.value="updateBatchChannel";
-		 document.myform.pageStr.value="Y";
 		 document.myform.submit();
 	 }
 	

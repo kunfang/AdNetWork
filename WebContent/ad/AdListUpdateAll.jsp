@@ -31,40 +31,55 @@
 				<b>您当前的位置 - 所有产品列表</b>
 			</ul>
 			<div class="leshu_table" style="overflow-x:auto;overflow-y:hidden;">
-			  <table style="width:80%; margin:0px auto; font-size:13px; padding-top:10px;border:solid 0px #add9c0;">
+			  <table style="width:90%; margin:0px auto; font-size:13px; padding-top:10px;border:solid 0px #add9c0;">
 				<tr style="border:solid 0px #add9c0;">
-					<td style="border:solid 0px #add9c0;width: 15%;text-align: right;">系统：</td>
-                    <td style="border:solid 0px #add9c0;width: 15%;text-align: left;">
+				    <td style="border:solid 0px #add9c0;width: 18%;text-align: right;">产品类别：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<form:select path="columnType">
+	                       <form:option value="" label="-------"></form:option>
+	                       <form:options items="${columnList}" itemLabel="valuename" itemValue="value"/>
+	                    </form:select>
+                    </td>
+					<td style="border:solid 0px #add9c0;width: 18%;text-align: right;">系统：</td>
+                    <td style="border:solid 0px #add9c0;width: 18%;text-align: left;">
                     	<form:select path="platformType">
 	                       <form:option value="" label="-------"></form:option>
 	                       <form:options items="${platList}" itemLabel="valuename" itemValue="value"/>
 	                    </form:select>
                     </td>
-                    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">结算方式：</td>
+                    <td style="border:solid 0px #add9c0;width: 18%;text-align: right;">结算方式：</td>
                     <td style="border:solid 0px #add9c0;text-align: left;">
                     	<form:select path="balanceType">
 	                       <form:option value="" label="-------"></form:option>
 	                       <form:options items="${balanceList}" itemLabel="valuename" itemValue="value"/>
 	                    </form:select>
                     </td>
-                    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">产品类别：</td>
+                    <td style="border:solid 0px #add9c0;width: 18%;text-align: right;">审核状态：</td>
                     <td style="border:solid 0px #add9c0;text-align: left;">
-                    	<form:select path="columnType">
+                    	<form:select path="verifystatus">
 	                       <form:option value="" label="-------"></form:option>
-	                       <form:options items="${columnList}" itemLabel="valuename" itemValue="value"/>
+	                       <form:options items="${verfiStatusList}" itemLabel="valuename" itemValue="value"/>
 	                    </form:select>
-                    </td>	
+                    </td>
 				</tr >
 				<tr style="border:solid 0px #add9c0;">
-					<td style="border:solid 0px #add9c0;width: 15%;text-align: right;">产品名称：</td>
-                    <td style="border:solid 0px #add9c0;width: 15%;text-align: left;">
-                    	<input type="text" class="leshu_a_input" style=" width:200px" id="prodName" name="prodName" placeholder="产品名称" value="${searchInfo.prodName}" />
-                    </td>
-                    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">详情：</td>
+				    <td style="border:solid 0px #add9c0;width: 18%;text-align: right;">上线状态：</td>
                     <td style="border:solid 0px #add9c0;text-align: left;">
-                    	<input type="text" class="leshu_a_input" style=" width:200px" id="comments" name="comments" placeholder="详情" value="${searchInfo.comments}" />
+                    	<form:select path="status">
+	                       <form:option value="" label="-------"></form:option>
+	                       <form:options items="${onlineStatusList}" itemLabel="valuename" itemValue="value"/>
+	                    </form:select>
+                    </td>
+					<td style="border:solid 0px #add9c0;width: 18%;text-align: right;">产品名称：</td>
+                    <td style="border:solid 0px #add9c0;width: 18%;text-align: left;">
+                    	<input type="text" class="leshu_a_input" style=" width:150px;" id="prodName" name="prodName" placeholder="产品名称" value="${searchInfo.prodName}" />
+                    </td>
+                    <td style="border:solid 0px #add9c0;width: 18%;text-align: right;">详情：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<input type="text" class="leshu_a_input" style=" width:150px;" id="comments" name="comments" placeholder="详情" value="${searchInfo.comments}" />
                     </td>	
-                    <td style="border:solid 0px #add9c0;text-align: right;">
+                    <td style="border:solid 0px #add9c0;text-align: left;" colspan="3">
+                        &nbsp;&nbsp;
                         <input type="button" class="button pill primary" value="查询" onclick="toSearch()" />
                     </td>
 				</tr >

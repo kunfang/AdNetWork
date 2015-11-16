@@ -78,11 +78,15 @@ public class ChannelController {
 			List<DictionaryVO> typeList = DictionaryMap.getDicListByType("channeltype");
 			List<DictionaryVO> sizeList = DictionaryMap.getDicListByType("channelsize");
 			List<DictionaryVO> orderList = DictionaryMap.getDicListByType("ordertype");
+			List<DictionaryVO> verfiStatusList = DictionaryMap.getDicListByType("verifystatus");
+			List<DictionaryVO> onlineStatusList = DictionaryMap.getDicListByType("onlinestatus");
 			
 			model.addAttribute("platList",platList);
 			model.addAttribute("typeList",typeList);
 			model.addAttribute("sizeList",sizeList);
 			model.addAttribute("orderList",orderList);
+			model.addAttribute("verfiStatusList",verfiStatusList);
+			model.addAttribute("onlineStatusList",onlineStatusList);
 			
 			model.addAttribute("pageList",pageList);
 			model.addAttribute("searchInfo",channel);

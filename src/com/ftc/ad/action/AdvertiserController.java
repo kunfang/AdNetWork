@@ -62,6 +62,8 @@ public class AdvertiserController {
 			List<DictionaryVO> priceList = DictionaryMap.getDicListByType("pricesize");
 			List<DictionaryVO> orderList = DictionaryMap.getDicListByType("ordertype");
 			List<DictionaryVO> wayList = DictionaryMap.getDicListByType("verifyWay");
+			List<DictionaryVO> verfiStatusList = DictionaryMap.getDicListByType("verifystatus");
+			List<DictionaryVO> onlineStatusList = DictionaryMap.getDicListByType("onlinestatus");
 			
 			model.addAttribute("platList",platList);
 			model.addAttribute("columnList",columnList);
@@ -71,6 +73,8 @@ public class AdvertiserController {
 			model.addAttribute("priceList",priceList);
 			model.addAttribute("orderList",orderList);
 			model.addAttribute("wayList",wayList);
+			model.addAttribute("verfiStatusList",verfiStatusList);
+			model.addAttribute("onlineStatusList",onlineStatusList);
 			
 			model.addAttribute("pageList",pageList);
 			model.addAttribute("searchInfo",advertiser);

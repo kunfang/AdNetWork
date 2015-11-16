@@ -25,36 +25,55 @@
 				<b>您当前的位置 - 所有渠道列表</b>
 			</ul>
 			<div class="leshu_table">
-			   <div class="onebox onebox1">
-			        <dl>
-		                <dt>终端：</dt>
-		                <dd>
-		                    <form:select path="platformType">
-		                       <form:option value="" label="-------"></form:option>
-		                       <form:options items="${platList}" itemLabel="valuename" itemValue="value"/>
-		                    </form:select>
-		                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                    <span>量级：</span>
-		                    <form:select path="channelsize">
-		                       <form:option value="" label="-------"></form:option>
-		                       <form:options items="${sizeList}" itemLabel="valuename" itemValue="value"/>
-		                    </form:select>
-		                </dd>
-		            </dl>
-					<dl>
-		                <dt>类型：</dt>
-		                <dd>
-		                    <form:select path="channeltype">
-		                       <form:option value="" label="-------"></form:option>
-		                       <form:options items="${typeList}" itemLabel="valuename" itemValue="value"/>
-		                    </form:select>
-		                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-		                    <span>详情：</span><input type="text" class="leshu_a_input" style=" width:200px" id="comments" name="comments" placeholder="详情" value="${searchInfo.comments}"/>
-		                    <span>&nbsp;<input type="button" class="button pill primary" value="查询" onclick="toSearch()">
-		                    </span>
-		                </dd>
-		            </dl>
-			     </div>
+			   <table style="width:80%; margin:0px auto; font-size:13px; padding-top:10px;border:solid 0px #add9c0;">
+				<tr style="border:solid 0px #add9c0;">
+				    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">终端：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<form:select path="platformType">
+	                       <form:option value="" label="-------"></form:option>
+	                       <form:options items="${platList}" itemLabel="valuename" itemValue="value"/>
+	                    </form:select>
+                    </td>
+					<td style="border:solid 0px #add9c0;width: 15%;text-align: right;">审核状态：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<form:select path="verifystatus">
+	                       <form:option value="" label="-------"></form:option>
+	                       <form:options items="${verfiStatusList}" itemLabel="valuename" itemValue="value"/>
+	                    </form:select>
+                    </td>
+                    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">上线状态：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<form:select path="status">
+	                       <form:option value="" label="-------"></form:option>
+	                       <form:options items="${onlineStatusList}" itemLabel="valuename" itemValue="value"/>
+	                    </form:select>
+                    </td>
+				</tr >
+				<tr style="border:solid 0px #add9c0;">
+				    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">量级：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<form:select path="channelsize">
+                          <form:option value="" label="-------"></form:option>
+                          <form:options items="${sizeList}" itemLabel="valuename" itemValue="value"/>
+                        </form:select>
+                    </td>
+					<td style="border:solid 0px #add9c0;width: 15%;text-align: right;">类型：</td>
+                    <td style="border:solid 0px #add9c0;width: 15%;text-align: left;">
+                    	<form:select path="channeltype">
+	                       <form:option value="" label="-------"></form:option>
+	                       <form:options items="${typeList}" itemLabel="valuename" itemValue="value"/>
+	                    </form:select>
+                    </td>
+                    <td style="border:solid 0px #add9c0;width: 15%;text-align: right;">详情：</td>
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                    	<input type="text" class="leshu_a_input" style=" width:200px" id="comments" name="comments" placeholder="详情" value="${searchInfo.comments}"/>
+                    </td>	
+                    <td style="border:solid 0px #add9c0;text-align: left;">
+                        &nbsp;&nbsp;
+                        <input type="button" class="button pill primary" value="查询" onclick="toSearch()" />
+                    </td>
+				</tr >
+			</table>
 			
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tbody>
